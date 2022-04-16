@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -8,6 +8,8 @@ def learn(id):
 
 @app.route('/quiz/<int:id>')
 def quiz(id):
+    if id == 2:
+        return render_template("quiz_2.html")
     return "this is quiz {}".format(str(id))
 
 @app.route('/quiz_end')
