@@ -5,6 +5,7 @@ audio_folder = os.path.join('static', 'audio')
 
 app = Flask(__name__)
 app.config['learn_audio'] = os.path.join(audio_folder, 'learn')
+app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
 learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
 learn_data = [
@@ -37,6 +38,36 @@ learn_data = [
         'hiragana': 'お',
         'sounds_like': 'o',
         'audio': os.path.join(app.config['learn_audio'], 'o.mp3')
+    }
+]
+
+quiz_2_data = [
+    {
+        "q_type": 2,
+        "hiragana": "おい",
+        "roman": "hey",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
+    },
+    {
+        "q_type": 2,
+        "hiragana": "うえ",
+        "roman": "up",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
+    },
+    {
+        "q_type": 2,
+        "hiragana": "あう",
+        "roman": "Meet",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
+    }
+]
+
+
+quiz_3_data = [
+    {
+        "q_type": 3,
+        "hiragana": "あおい",
+        "roman": "blue"
     }
 ]
 
