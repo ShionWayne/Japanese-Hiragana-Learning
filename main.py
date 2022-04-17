@@ -1,5 +1,9 @@
+from email.mime import audio
+import os
 from flask import Flask, render_template
 import os
+
+audio_folder = os.path.join('static', 'audio')
 
 audio_folder = os.path.join('static', 'audio')
 
@@ -78,7 +82,9 @@ def learn(id):
 @app.route('/quiz/<int:id>')
 def quiz(id):
     if id == 2:
-        return render_template("quiz_2.html")
+        return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
+    if id == 3:
+        return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
     return "this is quiz {}".format(str(id))
 
 @app.route('/quiz_end')
