@@ -1,3 +1,5 @@
-$("#submit").click(function(event){
-    window.location.href = '/'
+$(function() {
+    $("#submit").click(function(){
+        window.location.href = '/'
+    })
 })
