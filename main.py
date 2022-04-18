@@ -3,8 +3,10 @@ import os
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
+image_folder = os.path.join('static', 'image')
 audio_folder = os.path.join('static', 'audio')
-app.config['learn_audio'] = os.path.join(audio_folder, 'learn')
+app.config['image_folder'] = image_folder
+app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
 # learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
@@ -91,6 +93,10 @@ user_result ={
     4: []
 }
 
+@app.route('/startlearning')
+def start_learn():
+    return render_template('learn_0.html')
+
 @app.route('/learn/<id>')
 def learn(id):
     for i in range(5):
@@ -150,7 +156,8 @@ def quiz_end():
 
 @app.route('/')
 def hello():
-    return render_template('home.html')
-
+    homeimg = os.path.join(app.config['image_folder'], 'homeimg.png')
+    return render_template('home.html', homeimg=homeimg)
+    
 if __name__ == '__main__':
    app.run(debug = True)
