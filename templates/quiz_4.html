@@ -17,14 +17,57 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'quiz_4.js') }}"></script>
+    <style>
+        #check_answer {
+            position: absolute;
+            top:0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            height: 30px;
+            width: 200px;
+        }
+        .red_zone {
+            background-color: #ef9ab7;
+        }
+        .green_zone {
+            background-color: #85d485;
+        }
+        #go_to_next {
+            position: relative;
+            left: 90px;
+        }
+        #try_again {
+            position: relative;
+            left: 90px;
+        }
+        .container {
+            height: 500px;
+            background-color: #ead38d;
+            text-align: center;
+        }
+        #question {
+            position: relative;
+            top: 100px;
+        }
+        #audio {
+            position: relative;
+            top: 30px;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
-        <audio controls="controls" src="/static/quiz/4/iie.mp3"></audio>
-        Type the Romanization of this word:
+        <audio id="audio" controls="controls" src="../static/audio/quiz/4/iie.mp3"></audio>
         <br>
-        <input id="input" type="text"> 
-        <button id="check">Check</button>
+        <div id="question">
+            <p>Type the Romanization of this word:</p>
+            <br>
+            <input id="input" type="text"> 
+            <button id="check">Check</button>
+        </div>
         <div id="check_answer"></div>
     </div>
 </body>
