@@ -1,7 +1,6 @@
 from email.mime import audio
 import os
 from flask import Flask, render_template, request, jsonify
-import os
 
 
 
