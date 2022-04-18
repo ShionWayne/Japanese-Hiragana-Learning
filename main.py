@@ -64,7 +64,6 @@ def learn(id):
 
     for i in range(5):
         data = learn_data[i]
-        print(data)
         if data['id'] == id:
             content = data
             break
@@ -102,8 +101,6 @@ def quiz(id):
                     for i in range(3):
                         solution = quizzes[0]["problem_and_answer"][i]
                         if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
-                            print(solution)
-                            print(pair)
                             result["correct"] = "False"
                             break
             return jsonify(newrecord=result)
