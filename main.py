@@ -96,11 +96,8 @@ quiz_3_data = [
 
 @app.route('/learn/<int:id>')
 def learn(id):
-
-    print(id)
     for i in range(5):
         data = learn_data[i]
-        print(data)
         if data['id'] == id:
             content = data
             break
@@ -114,7 +111,6 @@ def learn(id):
         content['next'] = 'None'
     else:
         content['next'] = learn_data[i+1]['id']
-    print(content)
 
     return render_template('learn.html', content=content)
 
@@ -130,7 +126,6 @@ def quiz(id):
             for element in json_data["user_answer"]:
                 if len(element) == 2:
                     answer.append(element)
-            print(answer)
             result = {"correct": "True"}
 
             if len(answer) != 3:
@@ -140,8 +135,6 @@ def quiz(id):
                     for i in range(3):
                         solution = quizzes[0]["problem_and_answer"][i]
                         if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
-                            print(solution)
-                            print(pair)
                             result["correct"] = "False"
                             break
     if id == 2:
@@ -157,7 +150,6 @@ def quiz_end():
 
 @app.route('/')
 def hello():
-    print(learn_dict)
     return render_template('home.html')
 
 if __name__ == '__main__':
