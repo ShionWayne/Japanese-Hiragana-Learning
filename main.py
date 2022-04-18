@@ -146,13 +146,14 @@ def quiz(id):
                             break
     if id == 2:
         return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
+    if id == 4:
+        return render_template("quiz_4.html", )
     if id == 3:
         return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
-    return "this is quiz {}".format(str(id))
 
 @app.route('/quiz_end')
 def quiz_end():
-    return "Quiz end"
+    return render_template('end.html')
 
 @app.route('/')
 def hello():
