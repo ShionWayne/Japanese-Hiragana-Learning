@@ -2,7 +2,6 @@ from email.mime import audio
 import os
 from flask import Flask, render_template, request, jsonify
 
-#print(os.path.join('static', 'audio', 'learn'))
 app = Flask(__name__)
 audio_folder = os.path.join('static', 'audio')
 app.config['learn_audio'] = os.path.join(audio_folder, 'learn')
