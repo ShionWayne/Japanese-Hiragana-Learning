@@ -1,10 +1,15 @@
+from email.mime import audio
+import os
 from flask import Flask, render_template
 import os
 
 audio_folder = os.path.join('static', 'audio')
 
+audio_folder = os.path.join('static', 'audio')
+
 app = Flask(__name__)
 app.config['learn_audio'] = os.path.join(audio_folder, 'learn')
+app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
 learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
 learn_data = [
@@ -40,6 +45,36 @@ learn_data = [
     }
 ]
 
+quiz_2_data = [
+    {
+        "q_type": 2,
+        "hiragana": "おい",
+        "roman": "hey",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
+    },
+    {
+        "q_type": 2,
+        "hiragana": "うえ",
+        "roman": "up",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
+    },
+    {
+        "q_type": 2,
+        "hiragana": "あう",
+        "roman": "Meet",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
+    }
+]
+
+
+quiz_3_data = [
+    {
+        "q_type": 3,
+        "hiragana": "あおい",
+        "roman": "blue"
+    }
+]
+
 @app.route('/learn/<int:id>')
 def learn(id):
     return "this is learn: {}".format(str(id))
@@ -47,10 +82,11 @@ def learn(id):
 @app.route('/quiz/<int:id>')
 def quiz(id):
     if id == 2:
-        return render_template("quiz_2.html")
+        return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
     if id == 4:
         return render_template("quiz_4.html", )
-    return "this is quiz {}".format(str(id))
+    if id == 3:
+        return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
 
 @app.route('/quiz_end')
 def quiz_end():

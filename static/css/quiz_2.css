@@ -1,0 +1,27 @@
+
+#quiz_2_content {
+    margin-top: 50px;
+}
+
+#quiz_2_instruct{
+    margin-top: 50px;
+}
+
+.quiz_2_source-box {
+    background-color: rgb(168, 166, 166);
+    padding: 2%;
+    max-width: 200px;
+    text-align: center;
+}
+
+.quiz_2_target-box {
+    background-color: rgb(211, 162, 133);
+    padding: 2%;
+    max-width: 200px;
+    text-align: center;
+}
+
+.quiz-2-row {
+    margin-bottom: 50px;
+}
+

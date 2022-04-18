@@ -1,16 +1,19 @@
 $(function() {
+    $("#previous").click(function(){
+        window.location.href = '/quiz/3'
+    });
+    $("#next").click(function(){
+        window.location.href = '/quiz_end'
+    });
     $("#check").click(function(){
         $("#check_answer").empty()
         if($("#input").val().toLowerCase() == "no") {
             $("#check_answer").addClass("green_zone")
             let correct = $("<span>").text("Great!")
             $("#check_answer").append(correct)
-            let next_button = $("<button>Next</button>")
+            let next_button = $("<button>Finish</button>")
             next_button.attr("id", "go_to_next")
             $("#check_answer").append(next_button)
-            // $("#check_answer").append("<p>Wonderful! This word means 'no'</p>")
-            // $("#check_answer").append("<button type='submit' id='correct'>Finish</button>")
-            // $("#check_answer").css("background-color", "green")
             $("#go_to_next").click(function(){
                 window.location.href = '/quiz_end'
             })
@@ -23,12 +26,10 @@ $(function() {
             let try_again = $("<button>Try Again</button>")
             try_again.attr("id", "try_again_button")
             $("#check_answer").append(try_again)
-            // $("#check_answer").append("<p>Wrong answer!</p>")
-            // $("#check_answer").append("<button type='submit' id='wrong'>Try Again</button>")
-            // $("#check_answer").css("background-color", "red")
             $("#try_again_button").click(function(){
                 $("#input").val('')
                 $("#check_answer").empty()
+                $("#check_answer").removeClass("red_zone green zone")
             })
         }
     })
