@@ -18,18 +18,23 @@ $(document).ready(function (){
     let prev_a = $("<a>")
     prev_a.text("Prev")
     if (content.prev == "None"){
-        prev_a.attr('href', '/')
+        prev_a.attr('href', '/startlearning')
     } else {
         prev_a.attr('href', '/learn/'+content.prev)
     }
     $(".prev_learn").append(prev_a)
 
     let next_a = $("<a>")
+    let gotit = $("<a>")
+    gotit.text("I Got It!")
     next_a.text("Next")
     if (content.next == "None"){
-        next_a.attr('href', '/')
+        next_a.attr('href', '/quiz/1')
+        gotit.attr('href', '/quiz/1')
     } else {
         next_a.attr('href', '/learn/'+content.next)
+        gotit.attr('href', '/learn/'+content.next)
     }
     $(".next_learn").append(next_a)
+    $(".got_it_learn").append(gotit)
 })
