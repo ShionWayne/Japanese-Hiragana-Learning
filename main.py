@@ -143,9 +143,10 @@ def quiz(id):
         return render_template("quiz_4.html", )
     return "this is quiz {}".format(str(id))
 
+
 @app.route('/quiz_end')
 def quiz_end():
-    return "Quiz end"
+    return render_template('end.html')
 
 @app.route('/')
 def hello():
