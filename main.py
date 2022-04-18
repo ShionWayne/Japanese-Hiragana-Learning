@@ -3,8 +3,10 @@ import os
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
+image_folder = os.path.join('static', 'image')
 audio_folder = os.path.join('static', 'audio')
-app.config['learn_audio'] = os.path.join(audio_folder, 'learn')
+app.config['image_folder'] = image_folder
+app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
 # learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
@@ -71,15 +73,22 @@ quiz_3_data = [
     }
 ]
 
+quiz_4_data = [
+    {
+        "q_type": 4,
+        "roman": "iie"
+    }
+]
+
 quizzes = [
     {
         "id": 1,
         "type": "drag",
         "problem_text": "Drag the hiragana to corresponding Romanization:",
         "problem_and_answer": [
-            {"hiragana": "あい", "Romanization": "uo", "English": "fish"},
-            {"hiragana": "うお", "Romanization": "ie", "English": "home"},
-            {"hiragana": "いえ", "Romanization": "ai", "English": "love"}
+            {"hiragana": "あい", "Romanization": "ai", "English": "love"},
+            {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
+            {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
         ]
     }
 ]
@@ -90,6 +99,10 @@ user_result ={
     3: [],
     4: []
 }
+
+@app.route('/startlearning')
+def start_learn():
+    return render_template('learn_0.html')
 
 @app.route('/learn/<id>')
 def learn(id):
@@ -140,7 +153,7 @@ def quiz(id):
     if id == 3:
         return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
     if id == 4:
-        return render_template("quiz_4.html", )
+        return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
     return "this is quiz {}".format(str(id))
 
 
@@ -150,7 +163,8 @@ def quiz_end():
 
 @app.route('/')
 def hello():
-    return render_template('home.html')
-
+    homeimg = os.path.join(app.config['image_folder'], 'homeimg.png')
+    return render_template('home.html', homeimg=homeimg)
+    
 if __name__ == '__main__':
    app.run(debug = True)
