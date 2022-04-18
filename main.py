@@ -76,7 +76,7 @@ quiz_3_data = [
 quiz_4_data = [
     {
         "q_type": 4,
-        "roman": "no"
+        "roman": "iie"
     }
 ]
 
@@ -86,9 +86,9 @@ quizzes = [
         "type": "drag",
         "problem_text": "Drag the hiragana to corresponding Romanization:",
         "problem_and_answer": [
-            {"hiragana": "あい", "Romanization": "uo", "English": "fish"},
-            {"hiragana": "うお", "Romanization": "ie", "English": "home"},
-            {"hiragana": "いえ", "Romanization": "ai", "English": "love"}
+            {"hiragana": "あい", "Romanization": "ai", "English": "love"},
+            {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
+            {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
         ]
     }
 ]
