@@ -1,8 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import os
 
-audio_folder = os.path.join('static', 'audio', 'learn')
-print(audio_folder)
 #print(os.path.join('static', 'audio', 'learn'))
 app = Flask(__name__)
 app.config['learn_audio'] = 'static/audio/learn/'
@@ -64,7 +62,6 @@ user_result ={
 @app.route('/learn/<id>')
 def learn(id):
 
-    print(id)
     for i in range(5):
         data = learn_data[i]
         print(data)
@@ -81,7 +78,6 @@ def learn(id):
         content['next'] = 'None'
     else:
         content['next'] = learn_data[i+1]['id']
-    print(content)
 
     return render_template('learn.html', content=content)
 
@@ -97,7 +93,6 @@ def quiz(id):
             for element in json_data["user_answer"]:
                 if len(element) == 2:
                     answer.append(element)
-            print(answer)
             result = {"correct": "True"}
 
             if len(answer) != 3:
@@ -111,8 +106,6 @@ def quiz(id):
                             print(pair)
                             result["correct"] = "False"
                             break
-            print(result)
-            print(user_result[1])
             return jsonify(newrecord=result)
 
 
@@ -124,7 +117,6 @@ def quiz_end():
 
 @app.route('/')
 def hello():
-    print(learn_data)
     return render_template('home.html')
 
 if __name__ == '__main__':
