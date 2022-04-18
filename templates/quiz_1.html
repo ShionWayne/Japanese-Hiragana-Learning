@@ -1,0 +1,73 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<script type="text/javascript" src="{{url_for('static', filename='js/quiz_1.js')}}"></script>
+
+<script>
+    let content = {{content|tojson}}
+    console.log(content)
+</script>
+
+<style>
+    /*.quiz1_grid{*/
+    /*    height: 100%;*/
+    /*    width: 80%;*/
+    /*    display: grid;*/
+    /*    grid-template-rows: 15% 80% ;*/
+    /*    !*grid-gap: 3px;*!*/
+    /*}*/
+    /*.quiz1_grid > grid_item{*/
+    /*    font-weight: bold;*/
+    /*}*/
+    .drag_grid{
+        height: 90px;
+        display: grid;
+        grid-template-columns: 30% 40% 30%;
+    }
+    .help_div{
+        height: 100px;
+    }
+    .quiz1_hiragana{
+        height: 80px;
+        width: 80px;
+        font-size: 40px;
+        background: lightgrey;
+        z-index: 10;
+    }
+    .quiz1_Romanization{
+        height: 80px;
+        width: 80px;
+        font-size: 40px;
+        background: lightgrey;
+        z-index: 5;
+    }
+    .green_zone{
+        background: lawngreen;
+        color: green;
+    }
+    .red_zone{
+        background: lightcoral;
+        color: red;
+    }
+    .result_word{
+        font-weight: bold;
+        margin-right: 300px;
+    }
+    #quiz1_drag_zone{
+        height: 270px;
+    }
+</style>
+
+<div id="quiz1_problem_zone"></div>
+<div id="quiz1_drag_zone"></div>
+<div>
+    <button class="quiz1_submit" style="margin-left: 300px">Submit</button>
+</div>
+<div id="quiz1_result_zone"></div>
+<div class="move_zone">
+    <button class="prev_quiz1" style="margin-right: 300px"></button>
+    <button class="next_quiz1" style="margin-left: 300px"></button>
+</div>
+
+{% endblock %}
