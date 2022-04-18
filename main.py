@@ -73,6 +73,13 @@ quiz_3_data = [
     }
 ]
 
+quiz_4_data = [
+    {
+        "q_type": 4,
+        "roman": "no"
+    }
+]
+
 quizzes = [
     {
         "id": 1,
@@ -146,7 +153,7 @@ def quiz(id):
     if id == 3:
         return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
     if id == 4:
-        return render_template("quiz_4.html", )
+        return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
     return "this is quiz {}".format(str(id))
 
 

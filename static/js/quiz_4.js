@@ -7,7 +7,7 @@ $(function() {
     });
     $("#check").click(function(){
         $("#check_answer").empty()
-        if($("#input").val().toLowerCase() == "no") {
+        if($("#input").val().toLowerCase() == data[0]["roman"]) {
             $("#check_answer").addClass("green_zone")
             let correct = $("<span>").text("Great!")
             $("#check_answer").append(correct)
@@ -17,7 +17,6 @@ $(function() {
             $("#go_to_next").click(function(){
                 window.location.href = '/quiz_end'
             })
-            console.log("green")
             
         } else {
             $("#check_answer").addClass("red_zone")
