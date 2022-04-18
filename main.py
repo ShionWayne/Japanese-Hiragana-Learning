@@ -1,9 +1,12 @@
-from flask import Flask, render_template, request, jsonify
+from email.mime import audio
 import os
+from flask import Flask, render_template, request, jsonify
 
 #print(os.path.join('static', 'audio', 'learn'))
 app = Flask(__name__)
-app.config['learn_audio'] = 'static/audio/learn/'
+audio_folder = os.path.join('static', 'audio')
+app.config['learn_audio'] = os.path.join(audio_folder, 'learn')
+app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
 # learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
 learn_data = [
@@ -39,6 +42,36 @@ learn_data = [
     }
 ]
 
+quiz_2_data = [
+    {
+        "q_type": 2,
+        "hiragana": "おい",
+        "roman": "hey",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
+    },
+    {
+        "q_type": 2,
+        "hiragana": "うえ",
+        "roman": "up",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
+    },
+    {
+        "q_type": 2,
+        "hiragana": "あう",
+        "roman": "Meet",
+        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
+    }
+]
+
+
+quiz_3_data = [
+    {
+        "q_type": 3,
+        "hiragana": "あおい",
+        "roman": "blue"
+    }
+]
+
 quizzes = [
     {
         "id": 1,
@@ -61,7 +94,6 @@ user_result ={
 
 @app.route('/learn/<id>')
 def learn(id):
-
     for i in range(5):
         data = learn_data[i]
         if data['id'] == id:
@@ -104,8 +136,12 @@ def quiz(id):
                             result["correct"] = "False"
                             break
             return jsonify(newrecord=result)
-
-
+    if id == 2:
+        return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
+    if id == 3:
+        return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
+    if id == 4:
+        return render_template("quiz_4.html", )
     return "this is quiz {}".format(str(id))
 
 @app.route('/quiz_end')
