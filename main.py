@@ -69,7 +69,7 @@ quiz_3_data = [
     {
         "q_type": 3,
         "hiragana": "あおい",
-        "roman": "blue"
+        "roman": "aoi"
     }
 ]
 
@@ -151,7 +151,15 @@ def quiz(id):
     if id == 2:
         return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
     if id == 3:
-        return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
+        if request.method == 'GET':
+            return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
+        else:
+            json_data = request.get_json()
+            user_result[3].append(json_data)
+            result = {"correct": "True"}
+            if json_data["user_answer"] != quiz_3_data[0]["roman"]:
+                result["correct"] = "False"
+            return jsonify(newrecord=result)
     if id == 4:
         return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
     return "this is quiz {}".format(str(id))
