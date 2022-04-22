@@ -1,5 +1,6 @@
-from email.mime import audio
 import os
+import random
+from email.mime import audio
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -9,6 +10,115 @@ app.config['image_folder'] = image_folder
 app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
+#------------------------------ data code ------------------------------
+learn_data = [
+    {
+        'id': 'a',
+        'hiragana': 'あ',
+        'sounds_like': 'ah',
+        'audio': os.path.join("../"+app.config['learn_audio'], 'a.mp3')
+    },
+    {
+        'id': 'i',
+        'hiragana': 'い',
+        'sounds_like': 'e',
+        'audio': os.path.join("../"+app.config['learn_audio'], 'i.mp3')
+    },
+    {
+        'id': 'u',
+        'hiragana': 'う',
+        'sounds_like': 'woo',
+        'audio': os.path.join("../"+app.config['learn_audio'], 'u.mp3')
+    },
+    {
+        'id': 'e',
+        'hiragana': 'え',
+        'sounds_like': 'i',
+        'audio': os.path.join("../"+app.config['learn_audio'], 'e.mp3')
+    },
+    {
+        'id': 'o',
+        'hiragana': 'お',
+        'sounds_like': 'o',
+        'audio': os.path.join("../"+app.config['learn_audio'], 'o.mp3')
+    }
+]
+
+quiz_1_data = [
+    {
+        "q_type": 1,
+        "id": 1,
+        "type": "drag",
+        "problem_text": "Drag the hiragana to corresponding Romanization:",
+        "problem_and_answer": [
+            {"hiragana": "あい", "Romanization": "ai", "English": "love"},
+            {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
+            {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
+        ]
+    }
+]
+
+quiz_2_data = [
+    {
+        "q_type": 2,
+        "data":[
+            {
+                "hiragana": "おい",
+                "roman": "hey",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
+            },
+            {
+                "hiragana": "うえ",
+                "roman": "up",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
+            },
+            {
+                "hiragana": "あう",
+                "roman": "Meet",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
+            }
+        ]
+    }
+]
+
+quiz_3_data = [
+    {
+        "q_type": 3,
+        "hiragana": "あおい",
+        "roman": "aoi"
+    }
+]
+
+quiz_4_data = [
+    {
+        "q_type": 4,
+        "roman": "iie"
+    }
+]
+
+#------------------------------ server code ------------------------------
+
+'''
+q_num: number of quizzes sampled from the quizzes pool
+q_selected_data: quizzes randomly sampled in the size of q_num
+user_result: a list of T/F records the validation records
+c_num: the total correct number
+'''
+q_num=4
+q_selected_data = []
+user_result = []
+c_num = 0
+
+def init_data():
+    q_data = quiz_1_data + quiz_2_data + quiz_3_data + quiz_4_data
+    global q_selected_data
+    q_selected_data = random.sample(q_data, q_num)
+    for i in range(q_num):
+        q_selected_data[i]["q_id"] = i
+    global user_result
+    user_result = list()
+
+init_data()
 
 @app.route('/startlearning')
 def start_learn():
@@ -34,9 +144,19 @@ def learn(id):
 
     return render_template('learn.html', content=content)
 
-@app.route('/quiz/<int:id>', methods=['GET', 'POST'])
+@app.route('/quiz_valid/<int:id>', methods=['POST'])
+def quiz_valid(id):
+    cur_data = q_selected_data[id]
+    # write your check code here
+    # and validate the c_num via ajax
+
+
+@app.route('/quiz/<int:id>')
 def quiz(id):
-    return render_template("quiz_layout.html", q_type=id)
+    if id > q_num:
+        return "error: no id found"
+    cur_q = q_selected_data[id]
+    return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
     # if id == 1:
     #     if request.method == 'GET':
     #         return render_template("quiz_1.html", content=quizzes[0])
@@ -84,6 +204,6 @@ def quiz_end():
 def hello():
     homeimg = os.path.join(app.config['image_folder'], 'homeimg.png')
     return render_template('home.html', homeimg=homeimg)
-    
+
 if __name__ == '__main__':
-   app.run(debug = True)
+    app.run(debug = True)
