@@ -1,11 +1,11 @@
-{% extends "layout.html" %}
+{% extends "quiz_layout.html" %}
 
 {% block content %}
 
 <script type="text/javascript" src="{{url_for('static', filename='js/quiz_1.js')}}"></script>
 
 <script>
-    let content = {{content|tojson}}
+    let content = {{data|tojson}}
     console.log(content)
 </script>
 
@@ -65,9 +65,9 @@
     <button class="quiz1_submit" style="margin-left: 300px">Submit</button>
 </div>
 <div id="quiz1_result_zone"></div>
-<div class="move_zone">
+<!-- <div class="move_zone">
     <button class="prev_quiz1" style="margin-right: 300px"></button>
     <button class="next_quiz1" style="margin-left: 300px"></button>
-</div>
+</div> -->
 
 {% endblock %}

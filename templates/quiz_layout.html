@@ -14,6 +14,28 @@
 
     {% block individual_css_or_js_tags %}
     {% endblock %}
+    <script type="text/javascript">
+        let pid = {{ p_id }};
+        let qnum = {{q_num}};
+        $(document).ready(function (){
+            if(pid != 0){
+                $("#prev-btn").click(function(){
+                    window.location.href = '/quiz/' + (pid-1).toString();
+                });
+            }else{
+                $("#prev-btn").attr("disable", true);
+            };
+            if(pid != qnum-1){
+                $("#next-btn").click(function(){
+                    window.location.href = '/quiz/' + (pid+1).toString();
+                });
+            }else{
+                $("#next-btn").click(function(){
+                    window.location.href = '/quiz_end';
+                });
+            }
+        })
+    </script>
   </head>
 
   <body>
@@ -22,17 +44,22 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
               <ul class="navbar-nav">
                 <li class="nav-item ">
                   <a class="nav-link" href="/startlearning">Let's learn</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="/quiz/0">Quiz</a>
+                  <a class="nav-link" href="/quiz/1">Quiz</a>
                 </li>
               </ul>
             </div>
           </nav>
+
+          <button type="submit" class="btn btn-primary mb-2" id="prev-btn">Prev</button>
+          <button type="submit" class="btn btn-primary mb-2" id="next-btn">Next</button>
+          <span>Correct: {{c_num}}/{{q_num}}</span>
 
           <div class="container" id="content">
             {% block content %}

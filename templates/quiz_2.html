@@ -1,4 +1,4 @@
-{% extends "layout.html"  %}
+{% extends "quiz_layout.html"  %}
 
 {% block individual_css_or_js_tags %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_2.css') }}">
@@ -6,8 +6,8 @@
 {% endblock %}
 
 {% block content %}
-<button type="submit" class="btn btn-primary mb-2"><a href="{{ url_for('quiz', id=1) }}" style="color:inherit">Prev</a></button>
-<button type="submit" class="btn btn-primary mb-2"><a href="{{ url_for('quiz', id=3) }}" style="color:inherit">Next</a></button>
+<!-- <button type="submit" class="btn btn-primary mb-2"><a href="{{ url_for('quiz', id=1) }}" style="color:inherit">Prev</a></button>
+<button type="submit" class="btn btn-primary mb-2"><a href="{{ url_for('quiz', id=3) }}" style="color:inherit">Next</a></button> -->
 
 
 <h4 id="quiz_2_instruct">
@@ -19,45 +19,45 @@
     <div class="row quiz-2-row">
         <div class="col-sm-6">
             <div class="quiz_2_source-box">
-                {{ data[0].hiragana }}
+                {{ data.data[0].hiragana }}
             </div>
         </div>
         <div class="col-sm-6">
             <div class="quiz_2_target-box">Dest1</div>
-            <audio src="{{ data[0].audio }}"  controls></audio>
+            <audio src="{{ data.data[0].audio }}"  controls></audio>
         </div>
     </div>
-    
+
     <div class="row quiz-2-row">
         <div class="col-sm-6">
             <div class="quiz_2_source-box">
-                {{ data[1].hiragana }}
+                {{ data.data[1].hiragana }}
             </div>
         </div>
         <div class="col-sm-4">
             <div class="quiz_2_target-box">Dest2</div>
-            <audio src="{{ data[1].audio }}" controls></audio>
+            <audio src="{{ data.data[1].audio }}" controls></audio>
         </div>
         <div class="col-sm-2">
             <!-- <input type="button" value="sound" onclick="playMuci()" /> -->
         </div>
     </div>
-    
+
     <div class="row quiz-2-row">
         <div class="col-sm-6">
             <div class="quiz_2_source-box">
-                {{ data[2].hiragana }}
+                {{ data.data[2].hiragana }}
             </div>
         </div>
 
         <div class="col-sm-6">
             <div class="quiz_2_target-box">Dest3</div>
-            <audio src="{{ data[2].audio }}" controls></audio>
+            <audio src="{{ data.data[2].audio }}" controls></audio>
         </div>
     </div>
 
     <div class="row">
-        
+
     </div>
 </div>
 {% endblock %}
