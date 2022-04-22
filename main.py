@@ -9,96 +9,6 @@ app.config['image_folder'] = image_folder
 app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
-# learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
-learn_data = [
-    {
-        'id': 'a',
-        'hiragana': 'あ',
-        'sounds_like': 'ah',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'a.mp3')
-    },
-    {
-        'id': 'i',
-        'hiragana': 'い',
-        'sounds_like': 'e',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'i.mp3')
-    },
-    {
-        'id': 'u',
-        'hiragana': 'う',
-        'sounds_like': 'woo',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'u.mp3')
-    },
-    {
-        'id': 'e',
-        'hiragana': 'え',
-        'sounds_like': 'i',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'e.mp3')
-    },
-    {
-        'id': 'o',
-        'hiragana': 'お',
-        'sounds_like': 'o',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'o.mp3')
-    }
-]
-
-quiz_2_data = [
-    {
-        "q_type": 2,
-        "hiragana": "おい",
-        "roman": "hey",
-        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
-    },
-    {
-        "q_type": 2,
-        "hiragana": "うえ",
-        "roman": "up",
-        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
-    },
-    {
-        "q_type": 2,
-        "hiragana": "あう",
-        "roman": "Meet",
-        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
-    }
-]
-
-
-quiz_3_data = [
-    {
-        "q_type": 3,
-        "hiragana": "あおい",
-        "roman": "aoi"
-    }
-]
-
-quiz_4_data = [
-    {
-        "q_type": 4,
-        "roman": "iie"
-    }
-]
-
-quizzes = [
-    {
-        "id": 1,
-        "type": "drag",
-        "problem_text": "Drag the hiragana to corresponding Romanization:",
-        "problem_and_answer": [
-            {"hiragana": "あい", "Romanization": "ai", "English": "love"},
-            {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
-            {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
-        ]
-    }
-]
-
-user_result ={
-    1: [],
-    2: [],
-    3: [],
-    4: []
-}
 
 @app.route('/startlearning')
 def start_learn():
@@ -126,43 +36,44 @@ def learn(id):
 
 @app.route('/quiz/<int:id>', methods=['GET', 'POST'])
 def quiz(id):
-    if id == 1:
-        if request.method == 'GET':
-            return render_template("quiz_1.html", content=quizzes[0])
-        else:
-            json_data = request.get_json()
-            user_result[1].append(json_data)
-            answer = []
-            for element in json_data["user_answer"]:
-                if len(element) == 2:
-                    answer.append(element)
-            result = {"correct": "True"}
+    return render_template("quiz_layout.html", q_type=id)
+    # if id == 1:
+    #     if request.method == 'GET':
+    #         return render_template("quiz_1.html", content=quizzes[0])
+    #     else:
+    #         json_data = request.get_json()
+    #         user_result[1].append(json_data)
+    #         answer = []
+    #         for element in json_data["user_answer"]:
+    #             if len(element) == 2:
+    #                 answer.append(element)
+    #         result = {"correct": "True"}
 
-            if len(answer) != 3:
-                result["correct"] = "False"
-            else:
-                for pair in answer:
-                    for i in range(3):
-                        solution = quizzes[0]["problem_and_answer"][i]
-                        if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
-                            result["correct"] = "False"
-                            break
-            return jsonify(newrecord=result)
-    if id == 2:
-        return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
-    if id == 3:
-        if request.method == 'GET':
-            return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
-        else:
-            json_data = request.get_json()
-            user_result[3].append(json_data)
-            result = {"correct": "True"}
-            if json_data["user_answer"] != quiz_3_data[0]["roman"]:
-                result["correct"] = "False"
-            return jsonify(newrecord=result)
-    if id == 4:
-        return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
-    return "this is quiz {}".format(str(id))
+    #         if len(answer) != 3:
+    #             result["correct"] = "False"
+    #         else:
+    #             for pair in answer:
+    #                 for i in range(3):
+    #                     solution = quizzes[0]["problem_and_answer"][i]
+    #                     if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
+    #                         result["correct"] = "False"
+    #                         break
+    #         return jsonify(newrecord=result)
+    # if id == 2:
+    #     return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
+    # if id == 3:
+    #     if request.method == 'GET':
+    #         return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
+    #     else:
+    #         json_data = request.get_json()
+    #         user_result[3].append(json_data)
+    #         result = {"correct": "True"}
+    #         if json_data["user_answer"] != quiz_3_data[0]["roman"]:
+    #             result["correct"] = "False"
+    #         return jsonify(newrecord=result)
+    # if id == 4:
+    #     return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
+    # return "this is quiz {}".format(str(id))
 
 
 @app.route('/quiz_end')
