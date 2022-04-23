@@ -16,3 +16,4 @@
 - [ ] Let's learn Specific page: ajust the position and layout
 - [ ] Unify error alert in quiz 1&2 and 3&4
 - [ ] Ajust the layout of button and score
+- [ ] Add stroke
