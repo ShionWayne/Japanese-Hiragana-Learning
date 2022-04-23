@@ -1,4 +1,4 @@
-{% extends "layout.html"  %}
+{% extends "quiz_layout.html"  %}
 
 {% block individual_css_or_js_tags %}
 <link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_3.css') }}">
@@ -6,9 +6,6 @@
 {% endblock %}
 
 {% block content %}
-<button type="submit" class="btn btn-primary mb-2"><a href="{{ url_for('quiz', id=2) }}" style="color:inherit">Prev</a></button>
-<button type="submit" class="btn btn-primary mb-2"><a href="{{ url_for('quiz', id=4) }}" style="color:inherit">Next</a></button>
-
 
 <h4 id="quiz_3_instruct">
     Drag the hiragana to corresponding pronunciation:
@@ -16,19 +13,26 @@
 
 <div id="quiz_3_content">
     <div id="hiragana-question">
-        {{ data[0].hiragana }}
+        {{ data.hiragana }}
     </div>
     <div id="quiz_3_question_instrct">
-        How to pronounce this word? Type its Romanization: 
+        How to pronounce this word? Type its Romanization:
     </div>
     <div id="quiz_3_input_container">
-        <form class="form-inline sm-4" action="">
+<!--        <form class="form-inline sm-4" action="">-->
+<!--            <div class="form-group">-->
+<!--                <input type="text" id="quiz_3_input">-->
+<!--            </div>-->
+<!--            <button class="btn btn-primary mb-2" id="quiz_3_button">Check</button>-->
+<!--        </form>-->
+        <div class="form-inline sm-4">
             <div class="form-group">
                 <input type="text" id="quiz_3_input">
             </div>
-            <button type="submit" class="btn btn-primary mb-2">Check</button>
-        </form>
+            <button class="btn btn-primary mb-2" id="quiz_3_button">Check</button>
+        </div>
     </div>
+    <div id="quiz_3_result_zone"></div>
 </div>
 
 {% endblock %}

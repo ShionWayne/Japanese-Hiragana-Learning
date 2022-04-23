@@ -1,5 +1,6 @@
-from email.mime import audio
 import os
+import random
+from email.mime import audio
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -9,7 +10,7 @@ app.config['image_folder'] = image_folder
 app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 
-# learn_dict = {'a': 'あ','i':'い', 'u': 'う', 'e': 'え', 'o':'お'}
+#------------------------------ data code ------------------------------
 learn_data = [
     {
         'id': 'a',
@@ -43,55 +44,81 @@ learn_data = [
     }
 ]
 
-quiz_2_data = [
+quiz_1_data = [
     {
-        "q_type": 2,
-        "hiragana": "おい",
-        "roman": "hey",
-        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
-    },
-    {
-        "q_type": 2,
-        "hiragana": "うえ",
-        "roman": "up",
-        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
-    },
-    {
-        "q_type": 2,
-        "hiragana": "あう",
-        "roman": "Meet",
-        "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
+        "q_type": 1,
+        "id": 1,
+        "type": "drag",
+        "problem_text": "Drag the hiragana to corresponding Romanization:",
+        "problem_and_answer": [
+            {"hiragana": "あい", "Romanization": "ai", "English": "love"},
+            {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
+            {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
+        ]
     }
 ]
 
+quiz_2_data = [
+    {
+        "q_type": 2,
+        "data":[
+            {
+                "hiragana": "おい",
+                "roman": "hey",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
+            },
+            {
+                "hiragana": "うえ",
+                "roman": "up",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
+            },
+            {
+                "hiragana": "あう",
+                "roman": "Meet",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
+            }
+        ]
+    }
+]
 
 quiz_3_data = [
     {
         "q_type": 3,
         "hiragana": "あおい",
-        "roman": "blue"
+        "roman": "aoi"
     }
 ]
 
-quizzes = [
+quiz_4_data = [
     {
-        "id": 1,
-        "type": "drag",
-        "problem_text": "Drag the hiragana to corresponding Romanization:",
-        "problem_and_answer": [
-            {"hiragana": "あい", "Romanization": "uo", "English": "fish"},
-            {"hiragana": "うお", "Romanization": "ie", "English": "home"},
-            {"hiragana": "いえ", "Romanization": "ai", "English": "love"}
-        ]
+        "q_type": 4,
+        "roman": "iie"
     }
 ]
 
-user_result ={
-    1: [],
-    2: [],
-    3: [],
-    4: []
-}
+#------------------------------ server code ------------------------------
+
+'''
+q_num: number of quizzes sampled from the quizzes pool
+q_selected_data: quizzes randomly sampled in the size of q_num
+user_result: a list of T/F records the validation records
+c_num: the total correct number
+'''
+q_num=4
+q_selected_data = []
+user_result = []
+c_num = 0
+
+def init_data():
+    q_data = quiz_1_data + quiz_2_data + quiz_3_data + quiz_4_data
+    global q_selected_data
+    q_selected_data = random.sample(q_data, q_num)
+    for i in range(q_num):
+        q_selected_data[i]["q_id"] = i
+    global user_result
+    user_result = list()
+
+init_data()
 
 @app.route('/startlearning')
 def start_learn():
@@ -117,37 +144,56 @@ def learn(id):
 
     return render_template('learn.html', content=content)
 
-@app.route('/quiz/<int:id>', methods=['GET', 'POST'])
-def quiz(id):
-    if id == 1:
-        if request.method == 'GET':
-            return render_template("quiz_1.html", content=quizzes[0])
-        else:
-            json_data = request.get_json()
-            user_result[1].append(json_data)
-            answer = []
-            for element in json_data["user_answer"]:
-                if len(element) == 2:
-                    answer.append(element)
-            result = {"correct": "True"}
+@app.route('/quiz_valid/<int:id>', methods=['POST'])
+def quiz_valid(id):
+    cur_data = q_selected_data[id]
+    # write your check code here
+    # and validate the c_num via ajax
 
-            if len(answer) != 3:
-                result["correct"] = "False"
-            else:
-                for pair in answer:
-                    for i in range(3):
-                        solution = quizzes[0]["problem_and_answer"][i]
-                        if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
-                            result["correct"] = "False"
-                            break
-            return jsonify(newrecord=result)
-    if id == 2:
-        return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
-    if id == 3:
-        return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
-    if id == 4:
-        return render_template("quiz_4.html", )
-    return "this is quiz {}".format(str(id))
+
+@app.route('/quiz/<int:id>')
+def quiz(id):
+    if id > q_num:
+        return "error: no id found"
+    cur_q = q_selected_data[id]
+    return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
+    # if id == 1:
+    #     if request.method == 'GET':
+    #         return render_template("quiz_1.html", content=quizzes[0])
+    #     else:
+    #         json_data = request.get_json()
+    #         user_result[1].append(json_data)
+    #         answer = []
+    #         for element in json_data["user_answer"]:
+    #             if len(element) == 2:
+    #                 answer.append(element)
+    #         result = {"correct": "True"}
+
+    #         if len(answer) != 3:
+    #             result["correct"] = "False"
+    #         else:
+    #             for pair in answer:
+    #                 for i in range(3):
+    #                     solution = quizzes[0]["problem_and_answer"][i]
+    #                     if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
+    #                         result["correct"] = "False"
+    #                         break
+    #         return jsonify(newrecord=result)
+    # if id == 2:
+    #     return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
+    # if id == 3:
+    #     if request.method == 'GET':
+    #         return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
+    #     else:
+    #         json_data = request.get_json()
+    #         user_result[3].append(json_data)
+    #         result = {"correct": "True"}
+    #         if json_data["user_answer"] != quiz_3_data[0]["roman"]:
+    #             result["correct"] = "False"
+    #         return jsonify(newrecord=result)
+    # if id == 4:
+    #     return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
+    # return "this is quiz {}".format(str(id))
 
 
 @app.route('/quiz_end')
@@ -158,6 +204,6 @@ def quiz_end():
 def hello():
     homeimg = os.path.join(app.config['image_folder'], 'homeimg.png')
     return render_template('home.html', homeimg=homeimg)
-    
+
 if __name__ == '__main__':
-   app.run(debug = True)
+    app.run(debug = True)
