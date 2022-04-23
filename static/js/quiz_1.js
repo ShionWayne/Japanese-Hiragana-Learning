@@ -73,25 +73,26 @@ function generate_red_zone(){
 $(document).ready(function (){
     $("#quiz1_problem_zone").text(content.problem_text)
     build_drag_zone(content)
-    $("#quiz1_result_zone")
-    let prev_a = $("<a>")
-    prev_a.text("Prev")
-    prev_a.attr('href', '/')
-    $(".prev_quiz1").append(prev_a)
-    let next_a = $("<a>")
-    next_a.text("Next")
-    next_a.attr('href', '/quiz/'+"2")
-    $(".next_quiz1").append(next_a)
+    // $("#quiz1_result_zone")
+    // let prev_a = $("<a>")
+    // prev_a.text("Prev")
+    // prev_a.attr('href', '/')
+    // $(".prev_quiz1").append(prev_a)
+    // let next_a = $("<a>")
+    // next_a.text("Next")
+    // next_a.attr('href', '/quiz/'+"2")
+    // $(".next_quiz1").append(next_a)
     $(".quiz1_submit").click(function (){
         let time = new Date()
         let record = {
-            "id": content.id,
+            "id": pid,
+            "q_type": content.q_type,
             "time": time,
             "user_answer":user_answer
         }
         $.ajax({
             type: "POST",
-            url: "/quiz/"+content.id,
+            url: "/quiz_valid/"+pid,
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(record),

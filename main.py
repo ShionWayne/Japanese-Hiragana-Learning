@@ -147,8 +147,32 @@ def learn(id):
 @app.route('/quiz_valid/<int:id>', methods=['POST'])
 def quiz_valid(id):
     cur_data = q_selected_data[id]
+    global c_num
     # write your check code here
     # and validate the c_num via ajax
+    json_data = request.get_json()
+    user_result.append(json_data)
+    print(json_data)
+    if json_data["q_type"] == 1:
+        answer = []
+        for element in json_data["user_answer"]:
+            if len(element) == 2:
+                answer.append(element)
+        result = {"correct": "True"}
+
+        if len(answer) != 3:
+            result["correct"] = "False"
+        else:
+            for pair in answer:
+                for i in range(3):
+                    solution = cur_data["problem_and_answer"][i]
+                    if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
+                        result["correct"] = "False"
+                        break
+        if result["correct"] == "True":
+            c_num += 1
+        return jsonify(newrecord=result)
+
 
 
 @app.route('/quiz/<int:id>')
