@@ -1,0 +1,11 @@
+{% if data.q_type==1 %}
+{% extends "quiz_1.html" %}
+{% elif data.q_type==2 %}
+{% extends "quiz_2.html" %}
+{% elif data.q_type==3 %}
+{% extends "quiz_3.html" %}
+{% elif data.q_type==4 %}
+{% extends "quiz_4.html" %}
+{% else %}
+Not found this type: {{ data.q_type }}.
+{% endif %}
