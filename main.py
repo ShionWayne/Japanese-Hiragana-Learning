@@ -104,6 +104,7 @@ q_selected_data: quizzes randomly sampled in the size of q_num
 user_result: a list of T/F records the validation records
 c_num: the total correct number
 '''
+
 q_num = 4
 q_selected_data = []
 user_result = []
@@ -113,6 +114,7 @@ correct_dict = {}
 
 for i in range(1, q_num + 1):
     correct_dict[i] = 0
+
 
 def init_data():
     q_data = quiz_1_data + quiz_2_data + quiz_3_data + quiz_4_data
