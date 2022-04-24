@@ -104,10 +104,15 @@ q_selected_data: quizzes randomly sampled in the size of q_num
 user_result: a list of T/F records the validation records
 c_num: the total correct number
 '''
-q_num=4
+q_num = 4
 q_selected_data = []
 user_result = []
 c_num = 0
+# use correct dict to record the number of correctly answered quizzes
+correct_dict = {}
+
+for i in range(1, q_num + 1):
+    correct_dict[i] = 0
 
 def init_data():
     q_data = quiz_1_data + quiz_2_data + quiz_3_data + quiz_4_data
@@ -148,11 +153,11 @@ def learn(id):
 def quiz_valid(id):
     cur_data = q_selected_data[id]
     global c_num
+    global q_num
     # write your check code here
     # and validate the c_num via ajax
     json_data = request.get_json()
     user_result.append(json_data)
-    print(json_data)
     if json_data["q_type"] == 1:
         answer = []
         for element in json_data["user_answer"]:
@@ -170,9 +175,33 @@ def quiz_valid(id):
                         result["correct"] = "False"
                         break
         if result["correct"] == "True":
-            c_num += 1
+            correct_dict[1] = 1
+        c_num = 0
+        for i in range(1, q_num + 1):
+            c_num += correct_dict[i]
         return jsonify(newrecord=result)
+    elif json_data["q_type"] == 2:
+        answer = []
+        for element in json_data["user_answer"]:
+            if len(element) == 2:
+                answer.append(element)
+        result = {"correct": "True"}
 
+        if len(answer) != 3:
+            result["correct"] = "False"
+        else:
+            for pair in answer:
+                for i in range(3):
+                    solution = cur_data["data"][i]
+                    if solution["roman"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
+                        result["correct"] = "False"
+                        break
+        if result["correct"] == "True":
+            correct_dict[2] = 1
+        c_num = 0
+        for i in range(1, q_num + 1):
+            c_num += correct_dict[i]
+        return jsonify(newrecord=result)
 
 
 @app.route('/quiz/<int:id>')

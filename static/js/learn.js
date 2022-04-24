@@ -29,8 +29,8 @@ $(document).ready(function (){
     gotit.text("I Got It!")
     next_a.text("Next")
     if (content.next == "None"){
-        next_a.attr('href', '/quiz/1')
-        gotit.attr('href', '/quiz/1')
+        next_a.attr('href', '/quiz/0')
+        gotit.attr('href', '/quiz/0')
     } else {
         next_a.attr('href', '/learn/'+content.next)
         gotit.attr('href', '/learn/'+content.next)
