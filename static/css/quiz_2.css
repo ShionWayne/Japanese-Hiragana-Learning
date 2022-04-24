@@ -12,6 +12,7 @@
     padding: 2%;
     max-width: 200px;
     text-align: center;
+    z-index: 10;
 }
 
 .quiz_2_target-box {
@@ -19,9 +20,22 @@
     padding: 2%;
     max-width: 200px;
     text-align: center;
+    z-index: 5;
 }
 
 .quiz-2-row {
     margin-bottom: 50px;
+}
+.green_zone{
+    background: lawngreen;
+    color: green;
+}
+.red_zone{
+    background: lightcoral;
+    color: red;
+}
+.result_word{
+    font-weight: bold;
+    margin-right: 300px;
 }
 
