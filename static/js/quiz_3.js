@@ -29,13 +29,14 @@ $(document).ready(function () {
         let time = new Date()
         let answer_value = $("#quiz_3_input").val()
         let answer = {
-            "id": "3",
+            "id": pid,
+            "q_type": content.q_type,
             "time": time,
             "user_answer": answer_value
         }
         $.ajax({
             type: "POST",
-            url: "/quiz/3",
+            url: "/quiz_valid/" + pid,
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(answer),

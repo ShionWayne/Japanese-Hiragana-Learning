@@ -204,6 +204,27 @@ def quiz_valid(id):
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
         return jsonify(newrecord=result)
+    elif json_data["q_type"] == 3:
+        if json_data["user_anwser"] == "aoi":
+            result = {"correct": "True"}
+            correct_dict[3] = 1
+        else:
+            result = {"correct": "False"}
+        c_num = 0
+        for i in range(1, q_num + 1):
+            c_num += correct_dict[i]
+        return jsonify(newrecord=result)
+    elif json_data["q_type"] == 4:
+        if json_data["user_anwser"] == "iie":
+            result = {"correct": "True"}
+            correct_dict[4] = 1
+        else:
+            result = {"correct": "False"}
+        c_num = 0
+        for i in range(1, q_num + 1):
+            c_num += correct_dict[i]
+        return jsonify(newrecord=result)
+
 
 
 @app.route('/quiz/<int:id>')
