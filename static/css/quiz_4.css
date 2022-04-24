@@ -1,0 +1,43 @@
+#quiz_4_instruct{
+    margin-top: 50px;
+}
+
+#quiz_4_content{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#hiragana-question{
+    padding: 5%;
+    background-color: grey;
+    margin-left: 15%;
+    margin-right: 15%;
+    font-size: 60px;
+}
+
+#quiz_4_question_instruct{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+#quiz_4_input{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+#quiz_4_input_container{
+    margin-left: 40%;
+}
+.green_zone{
+    background: lawngreen;
+    color: green;
+}
+.red_zone{
+    background: lightcoral;
+    color: red;
+}
+.result_word{
+    font-weight: bold;
+    margin-right: 300px;
+}

@@ -1,64 +1,15 @@
 {% extends "quiz_layout.html"  %}
 
-{% block content %}
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+{% block individual_css_or_js_tags %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_4.css') }}">
+<script src="{{ url_for('static',filename='js/quiz_4.js') }}"></script>
+{% endblock %}
 
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/quiz_4.js') }}"></script>
+{% block content %}
     <script>
         var data = {{data|tojson}};
     </script>
-    <style>
-        #quiz_4_instruct{
-            margin-top: 50px;
-        }
 
-        #quiz_4_content{
-            margin-top: 50px;
-            text-align: center;
-        }
-
-        #hiragana-question{
-            padding: 5%;
-            background-color: grey;
-            margin-left: 15%;
-            margin-right: 15%;
-            font-size: 60px;
-        }
-
-        #quiz_4_question_instruct{
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-        #quiz_4_input{
-            display: block;
-            margin-right: auto;
-            margin-left: auto;
-        }
-
-        #quiz_4_input_container{
-            margin-left: 40%;
-        }
-        .green_zone{
-            background: lawngreen;
-            color: green;
-        }
-        .red_zone{
-            background: lightcoral;
-            color: red;
-        }
-        .result_word{
-            font-weight: bold;
-            margin-right: 300px;
-        }
-
-    </style>
     <h4 id="quiz_4_instruct">
         Type in romanization according to audio sound:
     </h4>

@@ -1,11 +1,11 @@
-
 function generate_green_zone(){
     $("#quiz_4_result_zone").addClass("green_zone")
     let right = $("<span>").text("Great!")
     right.addClass("result_word")
     $("#quiz_4_result_zone").append(right)
     let next_button = $("<button>")
-    next_button.append($("<a>").text("Next"))
+    next_button.attr("id", "next_button_correct")
+    next_button.text("Next")
     $("#quiz_4_result_zone").append(next_button)
 }
 
@@ -50,6 +50,17 @@ $(document).ready(function () {
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
+                    if(pid != qnum-1){
+                        $("#next_button_correct").click(function(){
+                            console.log("here")
+                            window.location.href = '/quiz/' + (pid+1).toString();
+                        });
+                    }else{
+                        $("#next_button_correct").click(function(){
+                            console.log("end")
+                            window.location.href = '/quiz_end';
+                        });
+                    }
                 } else {
                     generate_red_zone()
                 }
