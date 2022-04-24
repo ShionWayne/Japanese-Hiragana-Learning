@@ -1,0 +1,37 @@
+.drag_grid{
+    height: 90px;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+}
+.help_div{
+    height: 100px;
+}
+.quiz1_hiragana{
+    height: 80px;
+    width: 80px;
+    font-size: 40px;
+    background: lightgrey;
+    z-index: 10;
+}
+.quiz1_Romanization{
+    height: 80px;
+    width: 80px;
+    font-size: 40px;
+    background: lightgrey;
+    z-index: 5;
+}
+.green_zone{
+    background: lawngreen;
+    color: green;
+}
+.red_zone{
+    background: lightcoral;
+    color: red;
+}
+.result_word{
+    font-weight: bold;
+    margin-right: 300px;
+}
+#quiz1_drag_zone{
+    height: 270px;
+}

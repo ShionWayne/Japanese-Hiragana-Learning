@@ -44,16 +44,20 @@ function set_romaization_droppable(){
 }
 
 function generate_green_zone(){
+    $("#quiz1_result_zone").empty()
     $("#quiz1_result_zone").addClass("green_zone")
     let right = $("<span>").text("Great!")
     right.addClass("result_word")
     $("#quiz1_result_zone").append(right)
     let next_button = $("<button>")
-    next_button.append($("<a>").attr("href", "/quiz/2").text("Next"))
+    next_button.attr("id", "next_button_correct")
+    next_button.addClass("btn btn-primary mb-2")
+    next_button.text("Next")
     $("#quiz1_result_zone").append(next_button)
 }
 
 function generate_red_zone(){
+    $("#quiz1_result_zone").empty()
     $("#quiz1_result_zone").addClass("red_zone")
     let wrong = $("<span>").text("Wrong answer!")
     wrong.addClass("result_word")
@@ -73,25 +77,17 @@ function generate_red_zone(){
 $(document).ready(function (){
     $("#quiz1_problem_zone").text(content.problem_text)
     build_drag_zone(content)
-    $("#quiz1_result_zone")
-    let prev_a = $("<a>")
-    prev_a.text("Prev")
-    prev_a.attr('href', '/')
-    $(".prev_quiz1").append(prev_a)
-    let next_a = $("<a>")
-    next_a.text("Next")
-    next_a.attr('href', '/quiz/'+"2")
-    $(".next_quiz1").append(next_a)
     $(".quiz1_submit").click(function (){
         let time = new Date()
         let record = {
-            "id": content.id,
+            "id": pid,
+            "q_type": content.q_type,
             "time": time,
             "user_answer":user_answer
         }
         $.ajax({
             type: "POST",
-            url: "/quiz/"+content.id,
+            url: "/quiz_valid/"+pid,
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(record),
@@ -102,6 +98,15 @@ $(document).ready(function (){
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
+                    if(pid != qnum-1){
+                        $("#next_button_correct").click(function(){
+                            window.location.href = '/quiz/' + (pid+1).toString();
+                        });
+                    }else{
+                        $("#next_button_correct").click(function(){
+                            window.location.href = '/quiz_end';
+                        });
+                    }
                 } else {
                     generate_red_zone()
                 }
