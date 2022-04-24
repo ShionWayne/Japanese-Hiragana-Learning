@@ -1,0 +1,42 @@
+body{
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    background-color:beige;
+}
+
+a:link {
+    color: black;
+}
+a:visited {
+    color: black;
+}
+a:hover {
+    color: darkblue;
+    text-decoration: none;
+}
+a:active {
+    color: darkblue;
+    text-decoration: none;
+}
+
+.margin{
+    margin: 0 17px;
+}
+.height{
+    height: 160px; 
+}
+.hiragana{
+    padding: 20px 0;
+    font-size: 70px;
+    border-style: solid;
+    text-align: center;
+    background-image: linear-gradient(to bottom left, rgb(240, 240, 240), lightgrey);
+}
+.text{
+    font-size: xx-large;
+    font-weight: bold;
+}
+.italic{
+    font-style: italic;
+}
