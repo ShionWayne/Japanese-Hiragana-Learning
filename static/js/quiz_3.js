@@ -25,12 +25,14 @@ function generate_red_zone(){
 }
 
 $(document).ready(function () {
+    console.log(data.q_type)
     $("#quiz_3_button").click(function (){
         let time = new Date()
         let answer_value = $("#quiz_3_input").val()
+        console.log(answer_value)
         let answer = {
             "id": pid,
-            "q_type": content.q_type,
+            "q_type": data.q_type,
             "time": time,
             "user_answer": answer_value
         }

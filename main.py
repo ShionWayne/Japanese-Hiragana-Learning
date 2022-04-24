@@ -205,7 +205,7 @@ def quiz_valid(id):
             c_num += correct_dict[i]
         return jsonify(newrecord=result)
     elif json_data["q_type"] == 3:
-        if json_data["user_anwser"] == "aoi":
+        if json_data["user_answer"] == "aoi":
             result = {"correct": "True"}
             correct_dict[3] = 1
         else:
@@ -215,7 +215,7 @@ def quiz_valid(id):
             c_num += correct_dict[i]
         return jsonify(newrecord=result)
     elif json_data["q_type"] == 4:
-        if json_data["user_anwser"] == "iie":
+        if json_data["user_answer"] == "iie":
             result = {"correct": "True"}
             correct_dict[4] = 1
         else:

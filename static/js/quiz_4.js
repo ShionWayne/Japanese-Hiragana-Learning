@@ -1,38 +1,3 @@
-// $(function() {
-//     $("#previous").click(function(){
-//         window.location.href = '/quiz/3'
-//     });
-//     $("#next").click(function(){
-//         window.location.href = '/quiz_end'
-//     });
-//     $("#check").click(function(){
-//         $("#check_answer").empty()
-//         if($("#input").val().toLowerCase() == data[0]["roman"]) {
-//             $("#check_answer").addClass("green_zone")
-//             let correct = $("<span>").text("Great!")
-//             $("#check_answer").append(correct)
-//             let next_button = $("<button>Finish</button>")
-//             next_button.attr("id", "go_to_next")
-//             $("#check_answer").append(next_button)
-//             $("#go_to_next").click(function(){
-//                 window.location.href = '/quiz_end'
-//             })
-            
-//         } else {
-//             $("#check_answer").addClass("red_zone")
-//             let wrong = $("<span>").text("Wrong answer!")
-//             $("#check_answer").append(wrong)
-//             let try_again = $("<button>Try Again</button>")
-//             try_again.attr("id", "try_again_button")
-//             $("#check_answer").append(try_again)
-//             $("#try_again_button").click(function(){
-//                 $("#input").val('')
-//                 $("#check_answer").empty()
-//                 $("#check_answer").removeClass("red_zone green zone")
-//             })
-//         }
-//     })
-// })
 
 function generate_green_zone(){
     $("#quiz_4_result_zone").addClass("green_zone")
@@ -40,7 +5,7 @@ function generate_green_zone(){
     right.addClass("result_word")
     $("#quiz_4_result_zone").append(right)
     let next_button = $("<button>")
-    next_button.append($("<a>").attr("href", "/quiz_end").text("Next"))
+    next_button.append($("<a>").text("Next"))
     $("#quiz_4_result_zone").append(next_button)
 }
 
@@ -65,6 +30,7 @@ $(document).ready(function () {
         console.log("data type:" + data.q_type)
         let time = new Date()
         let answer_value = $("#quiz_4_input").val()
+        console.log("input+"+answer_value)
         let answer = {
             "id": pid,
             "q_type": data.q_type,
@@ -77,7 +43,7 @@ $(document).ready(function () {
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(answer),
-            success: function (result){
+            success: function(result){
                 let res = result["newrecord"]
                 console.log(pid);
                 console.log(res)
