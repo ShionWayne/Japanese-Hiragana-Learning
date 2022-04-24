@@ -44,6 +44,7 @@ function set_romaization_droppable(){
 }
 
 function generate_green_zone(){
+    $("#quiz1_result_zone").empty()
     $("#quiz1_result_zone").addClass("green_zone")
     let right = $("<span>").text("Great!")
     right.addClass("result_word")
