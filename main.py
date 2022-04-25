@@ -302,6 +302,29 @@ def quiz_valid(id):
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
         return jsonify(newrecord=result)
+    elif json_data["q_type"] == 3:
+        if json_data["eng"] == "blue":
+            if json_data["user_answer"] == "aoi":
+                result = {"correct": "True"}
+                correct_dict[3] = 1
+            else:
+                result = {"correct": "False"}
+        if json_data["eng"] == "cover":
+            if json_data["user_answer"] == "oou":
+                result = {"correct": "True"}
+                correct_dict[4] = 1
+            else:
+                result = {"correct": "False"}
+        if json_data["eng"] == "debate":
+            if json_data["user_answer"] == "iiau":
+                result = {"correct": "True"}
+                correct_dict[5] = 1
+            else:
+                result = {"correct": "False"}
+        c_num = 0
+        for i in range(1, q_num + 1):
+            c_num += correct_dict[i]
+        return jsonify(newrecord=result)
     elif json_data["q_type"] == 4:
         if json_data["eng"] == "no":
             if json_data["user_answer"] == "iie":
@@ -382,7 +405,7 @@ def quiz(id):
 
 @app.route('/quiz_end')
 def quiz_end():
-    return render_template('end.html')
+    return render_template('end.html', q_num=q_num, c_num=c_num)
 
 @app.route('/')
 def hello():

@@ -4,8 +4,15 @@
 
 <script src="{{ url_for('static',filename='js/end.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/end.css') }}">
+<script src="{{ url_for('static',filename='js/end.js') }}"></script>
+<script type="text/javascript">
+    let c_num = {{c_num|tojson}}
+    let q_num = {{q_num|tojson}}
+</script>
     <div class="text">
-            Congratulations! You have mastered the first 5 of Japanese Hiragana! 
+            Congratulations! You have mastered the Japanese Hiragana! 
+            <br>
+            <span>Your score is {{c_num}}/{{q_num}}</span>
             <br>
             <button id="submit">back to homepage</button>
     </div>

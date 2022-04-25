@@ -5,9 +5,16 @@ body{
     background-color:beige;
 }
 .text{
+    top: 100px;
+    text-align: center;
     font-size: xx-large;
     font-weight: bold;
 }
 .italic{
     font-style: italic;
+}
+#submit{
+    position: relative;
+    left: 300px;
+    top: 100px;
 }
