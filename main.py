@@ -47,13 +47,22 @@ learn_data = [
 quiz_1_data = [
     {
         "q_type": 1,
-        "id": 1,
         "type": "drag",
         "problem_text": "Drag the hiragana to corresponding Romanization:",
         "problem_and_answer": [
             {"hiragana": "あい", "Romanization": "ai", "English": "love"},
             {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
             {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
+        ]
+    }, 
+    {
+        "q_type": 1,
+        "type": "drag",
+        "problem_text": "Drag the hiragana to corresponding Romanization:",
+        "problem_and_answer": [
+            {"hiragana": "うえ", "Romanization": "ue", "English": "hunger"},
+            {"hiragana": "おい", "Romanization": "oi", "English": "nephew"},
+            {"hiragana": "おう", "Romanization": "ou", "English": "chase"}
         ]
     }
 ]
@@ -64,19 +73,45 @@ quiz_2_data = [
         "data":[
             {
                 "hiragana": "おい",
-                "roman": "hey",
+                "roman": "oi",
+                "eng": "hey",
                 "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
             },
             {
                 "hiragana": "うえ",
-                "roman": "up",
+                "roman": "ue",
+                "eng": "up",
                 "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
             },
             {
                 "hiragana": "あう",
-                "roman": "Meet",
+                "roman": "au",
+                "eng": "meet",
                 "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
-            }
+            }            
+        ]
+    },
+    {
+        "q_type": 2,
+        "data":[
+            {
+                "hiragana": "いい",
+                "roman": "ii",
+                "eng": "good",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ii.mp3')
+            },
+            {
+                "hiragana": "いう",
+                "roman": "iu",
+                "eng": "say",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'iu.mp3')
+            },
+            {
+                "hiragana": "おう",
+                "roman": "ou",
+                "eng": "king",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ou.mp3')
+            }          
         ]
     }
 ]
