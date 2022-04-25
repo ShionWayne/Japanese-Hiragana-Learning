@@ -47,13 +47,22 @@ learn_data = [
 quiz_1_data = [
     {
         "q_type": 1,
-        "id": 1,
         "type": "drag",
         "problem_text": "Drag the hiragana to corresponding Romanization:",
         "problem_and_answer": [
             {"hiragana": "あい", "Romanization": "ai", "English": "love"},
             {"hiragana": "うお", "Romanization": "uo", "English": "fish"},
             {"hiragana": "いえ", "Romanization": "ie", "English": "home"}
+        ]
+    }, 
+    {
+        "q_type": 1,
+        "type": "drag",
+        "problem_text": "Drag the hiragana to corresponding Romanization:",
+        "problem_and_answer": [
+            {"hiragana": "うえ", "Romanization": "ue", "English": "hunger"},
+            {"hiragana": "おい", "Romanization": "oi", "English": "nephew"},
+            {"hiragana": "おう", "Romanization": "ou", "English": "chase"}
         ]
     }
 ]
@@ -64,19 +73,45 @@ quiz_2_data = [
         "data":[
             {
                 "hiragana": "おい",
-                "roman": "hey",
+                "roman": "oi",
+                "eng": "hey",
                 "audio": os.path.join("../" + app.config['quiz_2_audio'], 'oi.mp3')
             },
             {
                 "hiragana": "うえ",
-                "roman": "up",
+                "roman": "ue",
+                "eng": "up",
                 "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ue.mp3')
             },
             {
                 "hiragana": "あう",
-                "roman": "Meet",
+                "roman": "au",
+                "eng": "meet",
                 "audio": os.path.join("../" + app.config['quiz_2_audio'], 'au.mp3')
-            }
+            }            
+        ]
+    },
+    {
+        "q_type": 2,
+        "data":[
+            {
+                "hiragana": "いい",
+                "roman": "ii",
+                "eng": "good",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ii.mp3')
+            },
+            {
+                "hiragana": "いう",
+                "roman": "iu",
+                "eng": "say",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'iu.mp3')
+            },
+            {
+                "hiragana": "おう",
+                "roman": "ou",
+                "eng": "king",
+                "audio": os.path.join("../" + app.config['quiz_2_audio'], 'ou.mp3')
+            }          
         ]
     }
 ]
@@ -86,6 +121,16 @@ quiz_3_data = [
         "q_type": 3,
         "hiragana": "あおい",
         "roman": "aoi"
+    },
+    {
+        "q_type": 3,
+        "hiragana": "おおう",
+        "roman": "oou"
+    },
+    {
+        "q_type": 3,
+        "hiragana": "いいあう",
+        "roman": "iiau"
     }
 ]
 
@@ -93,6 +138,14 @@ quiz_4_data = [
     {
         "q_type": 4,
         "roman": "iie"
+    },
+    {
+        "q_type": 4,
+        "roman": "iou"
+    },
+    {
+        "q_type": 4,
+        "roman": "ooi"
     }
 ]
 
@@ -204,27 +257,6 @@ def quiz_valid(id):
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
         return jsonify(newrecord=result)
-    elif json_data["q_type"] == 3:
-        if json_data["user_answer"] == "aoi":
-            result = {"correct": "True"}
-            correct_dict[3] = 1
-        else:
-            result = {"correct": "False"}
-        c_num = 0
-        for i in range(1, q_num + 1):
-            c_num += correct_dict[i]
-        return jsonify(newrecord=result)
-    elif json_data["q_type"] == 4:
-        if json_data["user_answer"] == "iie":
-            result = {"correct": "True"}
-            correct_dict[4] = 1
-        else:
-            result = {"correct": "False"}
-        c_num = 0
-        for i in range(1, q_num + 1):
-            c_num += correct_dict[i]
-        return jsonify(newrecord=result)
-
 
 
 @app.route('/quiz/<int:id>')
@@ -264,7 +296,7 @@ def quiz(id):
     #         json_data = request.get_json()
     #         user_result[3].append(json_data)
     #         result = {"correct": "True"}
-    #         if json_data["user_answer"] != quiz_3_data[0]["roman"]:
+    #         if json_data["user_answer"] != quiz_3_data[0]["eng"]:
     #             result["correct"] = "False"
     #         return jsonify(newrecord=result)
     # if id == 4:
