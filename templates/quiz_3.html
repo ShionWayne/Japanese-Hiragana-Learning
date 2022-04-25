@@ -6,14 +6,16 @@
 {% endblock %}
 
 {% block content %}
-
+<script>
+    var data = {{data|tojson}};
+</script>
 <h4 id="quiz_3_instruct">
     Drag the hiragana to corresponding pronunciation:
 </h4>
 
 <div id="quiz_3_content">
     <div id="hiragana-question">
-        {{ data.hiragana }}
+        {{data.hiragana}}
     </div>
     <div id="quiz_3_question_instrct">
         How to pronounce this word? Type its Romanization:
