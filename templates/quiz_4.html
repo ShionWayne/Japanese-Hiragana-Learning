@@ -7,7 +7,9 @@
 
 {% block content %}
     <script>
-        var data = {{data|tojson}};
+        var data = {{data|tojson}}
+        let w3 = {{wrong3|tojson}}
+        console.log(w3)
     </script>
 
     <h4 id="quiz_4_instruct">
@@ -16,7 +18,7 @@
     
     <div id="quiz_4_content">
         <div id="hiragana-question">
-            <audio id="audio" controls="controls" src={{data.sound}}"></audio>
+            <audio id="audio" controls="controls" src="{{data.sound}}"></audio>
         </div>
         <div id="quiz_4_question_instruct">
             What is this word? Type its Romanization:
