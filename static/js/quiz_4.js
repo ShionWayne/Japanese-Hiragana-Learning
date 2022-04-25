@@ -9,7 +9,7 @@ function generate_green_zone(){
     $("#quiz_4_result_zone").append(next_button)
 }
 
-function generate_red_zone(){
+function generate_red_zone(w3){
     $("#quiz_4_result_zone").addClass("red_zone")
     let wrong = $("<span>").text("Wrong answer!")
     wrong.addClass("result_word")
@@ -22,11 +22,11 @@ function generate_red_zone(){
         $("#quiz_4_input").focus()
         $("#quiz_4_result_zone").removeClass("red_zone")
         $("#quiz_4_result_zone").empty()
+        alert(w3)
     })
 }
 
 $(document).ready(function () {
-    alert(w3)
     $("#quiz_4_button").click(function (){
         console.log("data type:" + data.q_type)
         let time = new Date()
@@ -47,6 +47,8 @@ $(document).ready(function () {
             data : JSON.stringify(answer),
             success: function(result){
                 let res = result["newrecord"]
+                let w3 = result["wrong3"]
+                console.log("w3=" + w3)
                 console.log(pid);
                 console.log(res)
                 console.log(res.correct === "True")
@@ -64,7 +66,7 @@ $(document).ready(function () {
                         });
                     }
                 } else {
-                    generate_red_zone()
+                    generate_red_zone(w3)
                 }
             },
             error: function(request, status, error){
