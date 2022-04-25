@@ -4,6 +4,23 @@ function set_hiragana_draggable(){
     $(".quiz1_hiragana").draggable({cursor: "move", revert: "invalid"})
 }
 
+var target_list = []
+var source_list = []
+
+function randomsort(a, b) {
+    return Math.random()>.5 ? -1 : 1;
+    //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+}
+
+function build_random_list() {
+    for (i=0; i < content.problem_and_answer.length; i++){
+        target_list.push(content.problem_and_answer[i].Romanization)
+        source_list.push(content.problem_and_answer[i].hiragana)
+    }
+    target_list.sort(randomsort)
+    source_list.sort(randomsort)
+}
+
 function build_drag_zone(content){
     $("#quiz1_drag_zone").empty()
     for (i=0; i < content.problem_and_answer.length; i++){
@@ -11,16 +28,16 @@ function build_drag_zone(content){
         line.attr("id", "quiz1_line"+i.toString())
         let left_block = $("<div>").addClass("help_div")
         let hiragana = $("<div>").addClass("quiz1_hiragana")
-        hiragana.text(content.problem_and_answer[i].hiragana)
-        hiragana.attr("h", content.problem_and_answer[i].hiragana)
+        hiragana.text(source_list[i])
+        hiragana.attr("h", source_list[i])
         left_block.append(hiragana)
         line.append(left_block)
         let middle_block = $("<div>").addClass("help_div")
         line.append(middle_block)
         let right_block = $("<div>").addClass("help_div")
         let romanization = $("<div>").addClass("quiz1_Romanization")
-        romanization.text(content.problem_and_answer[i].Romanization)
-        romanization.attr("r", content.problem_and_answer[i].Romanization)
+        romanization.text(target_list[i])
+        romanization.attr("r", target_list[i])
         right_block.append(romanization)
         line.append(right_block)
         $("#quiz1_drag_zone").append(line)
@@ -75,6 +92,7 @@ function generate_red_zone(){
 }
 
 $(document).ready(function (){
+    build_random_list()
     $("#quiz1_problem_zone").text(content.problem_text)
     build_drag_zone(content)
     $(".quiz1_submit").click(function (){

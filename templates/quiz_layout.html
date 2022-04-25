@@ -59,7 +59,8 @@
 
           <button type="submit" class="btn btn-primary mb-2" id="prev-btn">Prev</button>
           <button type="submit" class="btn btn-primary mb-2" id="next-btn">Next</button>
-          <span>Correct: {{c_num}}/{{q_num}}</span>
+          <span>Correct: {{c_num}}/{{q_num}};</span>
+          <span>Current Quiz Number: {{ p_id+1 }}</span>
 
           <div class="container" id="content">
             {% block content %}

@@ -34,6 +34,7 @@ $(document).ready(function () {
         let answer = {
             "id": pid,
             "q_type": data.q_type,
+            "eng": data.eng,
             "time": time,
             "user_answer": answer_value
         }
