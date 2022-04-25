@@ -76,7 +76,7 @@ function generate_green_zone(){
     $("#quiz_2_result_zone").append(next_button)
 }
 
-function generate_red_zone(){
+function generate_red_zone(w3){
     $("#quiz_2_result_zone").empty()
     $("#quiz_2_result_zone").addClass("red_zone")
     let wrong = $("<span>").text("Wrong answer!")
@@ -91,11 +91,11 @@ function generate_red_zone(){
         $("#quiz_2_result_zone").removeClass("red_zone")
         $("#quiz_2_result_zone").empty()
         user_answer = []
+        alert(w3)
     })
 }
 
 $(document).ready(function (){
-    alert(w3)
     build_random_list()
     build_drag_zone(content)
     $(".quiz2_submit").click(function (){
@@ -114,7 +114,8 @@ $(document).ready(function (){
             data : JSON.stringify(record),
             success: function (result){
                 let res = result["newrecord"]
-
+                let w3 = result["wrong3"]
+                console.log("w3=" + w3)
                 console.log(res)
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
@@ -129,7 +130,7 @@ $(document).ready(function (){
                         });
                     }
                 } else {
-                    generate_red_zone()
+                    generate_red_zone(w3)
                 }
             },
             error: function(request, status, error){
