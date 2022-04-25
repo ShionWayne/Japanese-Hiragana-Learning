@@ -120,32 +120,38 @@ quiz_3_data = [
     {
         "q_type": 3,
         "hiragana": "あおい",
-        "roman": "aoi"
+        "roman": "aoi",
+        "eng": "blue"
     },
     {
         "q_type": 3,
         "hiragana": "おおう",
-        "roman": "oou"
+        "roman": "oou",
+        "eng": "cover"
     },
     {
         "q_type": 3,
         "hiragana": "いいあう",
-        "roman": "iiau"
+        "roman": "iiau",
+        "eng": "debate"
     }
 ]
 
 quiz_4_data = [
     {
         "q_type": 4,
-        "roman": "iie"
+        "roman": "iie",
+        "eng": "no"
     },
     {
         "q_type": 4,
-        "roman": "iou"
+        "roman": "iou",
+        "eng": "sulfur"
     },
     {
         "q_type": 4,
-        "roman": "ooi"
+        "roman": "ooi",
+        "eng": "many"
     }
 ]
 
