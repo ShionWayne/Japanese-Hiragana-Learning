@@ -4,6 +4,23 @@ function set_hiragana_draggable(){
     $(".quiz_2_source-box").draggable({cursor: "move", revert: "invalid"})
 }
 
+var target_list = []
+var source_list = []
+
+function randomsort(a, b) {
+    return Math.random()>.5 ? -1 : 1;
+    //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
+}
+
+function build_random_list() {
+    for (i=0; i < content.data.length; i++){
+        target_list.push({"roman": content.data[i].roman,"audio": content.data[i].audio})
+        source_list.push(content.data[i].hiragana)
+    }
+    target_list.sort(randomsort)
+    source_list.sort(randomsort)
+}
+
 function build_drag_zone(content){
     $("#quiz_2_content").empty()
     for (i=0; i < content.data.length; i++){
@@ -12,16 +29,16 @@ function build_drag_zone(content){
         line.attr("id", "quiz2_line"+i.toString())
         let left_block = $("<div>").addClass("col-sm-6")
         let hiragana = $("<div>").addClass("quiz_2_source-box")
-        hiragana.text(content.data[i].hiragana)
-        hiragana.attr("h", content.data[i].hiragana)
+        hiragana.text(source_list[i])
+        hiragana.attr("h", source_list[i])
         left_block.append(hiragana)
         line.append(left_block)
         let right_block = $("<div>").addClass("col-sm-6")
         let romanization = $("<div>").addClass("quiz_2_target-box")
-        romanization.attr("r", content.data[i].roman)
+        romanization.attr("r", target_list[i].roman)
         romanization.text("Block "+i.toString())
         let audio = $("<audio>")
-        audio.attr("src", content.data[i].audio)
+        audio.attr("src", target_list[i].audio)
         audio.attr("controls", "controls")
         right_block.append(romanization)
         right_block.append(audio)
@@ -78,6 +95,7 @@ function generate_red_zone(){
 }
 
 $(document).ready(function (){
+    build_random_list()
     build_drag_zone(content)
     $(".quiz2_submit").click(function (){
         let time = new Date()
