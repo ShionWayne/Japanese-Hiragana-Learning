@@ -35,6 +35,7 @@ $(document).ready(function () {
             "id": pid,
             "q_type": data.q_type,
             "time": time,
+            "eng": data.eng,
             "user_answer": answer_value
         }
         $.ajax({
