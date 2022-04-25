@@ -1,5 +1,5 @@
 function alert(wrong_num){
-    if (wrong_num == 3) {
+    if (wrong_num == 1) {
         $("#content").empty()
 
         let warn = $("<div>").text("You may want to stop here and learn again. ")
@@ -22,7 +22,5 @@ function alert(wrong_num){
         cont.addClass("cont")
         cont.text("Continue Testing")
         $("#content").append(cont)
-
-        wrong_num = 0
     }
 }
