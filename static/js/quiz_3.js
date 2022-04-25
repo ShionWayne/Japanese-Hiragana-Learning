@@ -1,4 +1,5 @@
 function generate_green_zone(){
+    $("#quiz_3_result_zone").empty()
     $("#quiz_3_result_zone").addClass("green_zone")
     let right = $("<span>").text("Great!")
     right.addClass("result_word")
@@ -10,6 +11,7 @@ function generate_green_zone(){
 }
 
 function generate_red_zone(w3){
+    $("#quiz_3_result_zone").empty()
     $("#quiz_3_result_zone").addClass("red_zone")
     let wrong = $("<span>").text("Wrong answer!")
     wrong.addClass("result_word")
