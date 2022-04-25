@@ -1,5 +1,7 @@
 $(document).ready(function (){
-    $(".hiragana_learn").text(content.hiragana)
+    let stroke = $("<img>")
+    stroke.attr("src", content.stroke)
+    $(".hiragana_learn").append(stroke)
     let line1 = $("<div>")
     line1.text("The Romanization of this hiragana is "+"'"+content.id+"'.")
     let line2 = $("<div>")
