@@ -4,7 +4,8 @@ function generate_green_zone(){
     right.addClass("result_word")
     $("#quiz_3_result_zone").append(right)
     let next_button = $("<button>")
-    next_button.append($("<a>").attr("href", "/quiz/4").text("Next"))
+    next_button.attr("id", "next_button_correct")
+    next_button.text("Next")
     $("#quiz_3_result_zone").append(next_button)
 }
 
@@ -25,17 +26,20 @@ function generate_red_zone(){
 }
 
 $(document).ready(function () {
+    console.log(data.q_type)
     $("#quiz_3_button").click(function (){
         let time = new Date()
         let answer_value = $("#quiz_3_input").val()
+        console.log(answer_value)
         let answer = {
-            "id": "3",
+            "id": pid,
+            "q_type": data.q_type,
             "time": time,
             "user_answer": answer_value
         }
         $.ajax({
             type: "POST",
-            url: "/quiz/3",
+            url: "/quiz_valid/" + pid,
             dataType : "json",
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(answer),
@@ -46,6 +50,17 @@ $(document).ready(function () {
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
+                    if(pid != qnum-1){
+                        $("#next_button_correct").click(function(){
+                            console.log("here")
+                            window.location.href = '/quiz/' + (pid+1).toString();
+                        });
+                    }else{
+                        $("#next_button_correct").click(function(){
+                            console.log("end")
+                            window.location.href = '/quiz_end';
+                        });
+                    }
                 } else {
                     generate_red_zone()
                 }
