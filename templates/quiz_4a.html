@@ -1,8 +1,8 @@
 {% extends "quiz_layout.html"  %}
 
 {% block individual_css_or_js_tags %}
-<link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_4.css') }}">
-<script src="{{ url_for('static',filename='js/quiz_4.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_4a.css') }}">
+<script src="{{ url_for('static',filename='js/quiz_4a.js') }}"></script>
 {% endblock %}
 
 {% block content %}
@@ -16,7 +16,8 @@
     
     <div id="quiz_4_content">
         <div id="hiragana-question">
-            <audio id="audio" controls="controls" src="../static/audio/quiz/4/iie.mp3"></audio>
+            <!-- <audio id="audio" controls="controls" src="../static/audio/quiz/4/iie.mp3"></audio> -->
+            {{data.sound}};
         </div>
         <div id="quiz_4_question_instruct">
             What is this word? Type its Romanization:
