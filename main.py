@@ -172,6 +172,7 @@ q_num = 8
 q_selected_data = []
 user_result = []
 c_num = 0
+w_num = 0
 # use correct dict to record the number of correctly answered quizzes
 correct_dict = {}
 
@@ -221,6 +222,7 @@ def learn(id):
 def quiz_valid(id):
     cur_data = q_selected_data[id]
     global c_num
+    global w_num
     global q_num
     # write your check code here
     # and validate the c_num via ajax
@@ -244,6 +246,8 @@ def quiz_valid(id):
                         break
         if result["correct"] == "True":
             correct_dict[1] = 1
+        else:
+            w_num += 1
         c_num = 0
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
@@ -266,6 +270,8 @@ def quiz_valid(id):
                         break
         if result["correct"] == "True":
             correct_dict[2] = 1
+        else: 
+            w_num += 1
         c_num = 0
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
