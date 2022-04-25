@@ -5,8 +5,10 @@ from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
 image_folder = os.path.join('static', 'image')
+stroke_folder = os.path.join('static', 'image', 'stroke')
 audio_folder = os.path.join('static', 'audio')
 app.config['image_folder'] = image_folder
+app.config['stroke_folder'] = stroke_folder
 app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 app.config['quiz_4_audio'] = os.path.join(audio_folder, 'quiz/4')
@@ -16,31 +18,36 @@ learn_data = [
         'id': 'a',
         'hiragana': 'あ',
         'sounds_like': 'ah',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'a.mp3')
+        'audio': os.path.join("../"+app.config['learn_audio'], 'a.mp3'),
+        'stroke': os.path.join("../"+app.config['stroke_folder'], 'a.gif')
     },
     {
         'id': 'i',
         'hiragana': 'い',
         'sounds_like': 'e',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'i.mp3')
+        'audio': os.path.join("../"+app.config['learn_audio'], 'i.mp3'),
+        'stroke': os.path.join("../"+app.config['stroke_folder'], 'i.gif')
     },
     {
         'id': 'u',
         'hiragana': 'う',
         'sounds_like': 'woo',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'u.mp3')
+        'audio': os.path.join("../"+app.config['learn_audio'], 'u.mp3'),
+        'stroke': os.path.join("../"+app.config['stroke_folder'], 'u.gif')
     },
     {
         'id': 'e',
         'hiragana': 'え',
         'sounds_like': 'i',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'e.mp3')
+        'audio': os.path.join("../"+app.config['learn_audio'], 'e.mp3'),
+        'stroke': os.path.join("../"+app.config['stroke_folder'], 'e.gif')
     },
     {
         'id': 'o',
         'hiragana': 'お',
         'sounds_like': 'o',
-        'audio': os.path.join("../"+app.config['learn_audio'], 'o.mp3')
+        'audio': os.path.join("../"+app.config['learn_audio'], 'o.mp3'),
+        'stroke': os.path.join("../"+app.config['stroke_folder'], 'o.gif')
     }
 ]
 
