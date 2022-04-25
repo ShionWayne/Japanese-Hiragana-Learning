@@ -26,6 +26,7 @@ function generate_red_zone(){
 }
 
 $(document).ready(function () {
+    alert(w3)
     console.log(data.q_type)
     $("#quiz_3_button").click(function (){
         let time = new Date()

@@ -92,6 +92,7 @@ function generate_red_zone(){
 }
 
 $(document).ready(function (){
+    alert(w3)
     build_random_list()
     $("#quiz1_problem_zone").text(content.problem_text)
     build_drag_zone(content)
@@ -136,5 +137,5 @@ $(document).ready(function (){
                 console.log(error)
             }
         })
-        })
+    })
 })
