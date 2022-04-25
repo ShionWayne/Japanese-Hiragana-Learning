@@ -18,7 +18,7 @@
 - [ ] Ajust the layout of button and score
 
 
-### Weekly RoadMap
+### 04/25
 - [ ] Add stroke data 
 - [ ] Graph Design
 - [ ] Add stroke 
