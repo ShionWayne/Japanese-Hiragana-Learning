@@ -21,6 +21,6 @@
 ### 04/25
 - [ ] Add stroke data 
 - [ ] Graph Design
-- [ ] Add stroke 
+- [ ] Add stroke quiz function (q_type 5)
 - [ ] Adjust next/prev button, counter layout & design
 - [ ] Add stroke quiz
