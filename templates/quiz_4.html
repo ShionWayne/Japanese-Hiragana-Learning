@@ -7,7 +7,9 @@
 
 {% block content %}
     <script>
-        var data = {{data|tojson}};
+        var data = {{data|tojson}}
+        let w3 = {{wrong3|tojson}}
+        console.log(w3)
     </script>
 
     <h4 id="quiz_4_instruct">
