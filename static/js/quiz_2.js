@@ -95,6 +95,7 @@ function generate_red_zone(){
 }
 
 $(document).ready(function (){
+    alert(w3)
     build_random_list()
     build_drag_zone(content)
     $(".quiz2_submit").click(function (){
