@@ -164,7 +164,7 @@ user_result: a list of T/F records the validation records
 c_num: the total correct number
 '''
 
-q_num = 4
+q_num = 8
 q_selected_data = []
 user_result = []
 c_num = 0
@@ -176,12 +176,15 @@ for i in range(1, q_num + 1):
 
 
 def init_data():
-    q_data = quiz_1_data + quiz_2_data + quiz_3_data + quiz_4_data
+    q_1_data = random.sample(quiz_1_data, 1)
+    q_2_data = random.sample(quiz_2_data, 1)
+    q_data = q_1_data + q_2_data + quiz_3_data + quiz_4_data
     global q_selected_data
-    q_selected_data = random.sample(q_data, q_num)
+    q_selected_data = q_data
     for i in range(q_num):
         q_selected_data[i]["q_id"] = i
     global user_result
+    print(q_data)
     user_result = list()
 
 init_data()
