@@ -83,6 +83,7 @@ quiz_3_data = [
 quiz_4_data = [
     {
         "q_type": 4,
+        "sound": 'audio': os.path.join("../"+app.config['learn_audio'], 'iie.mp3')
         "roman": "iie"
     }
 ]

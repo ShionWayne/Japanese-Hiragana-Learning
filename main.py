@@ -9,7 +9,7 @@ audio_folder = os.path.join('static', 'audio')
 app.config['image_folder'] = image_folder
 app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
-
+app.config['quiz_4_audio'] = os.path.join(audio_folder, 'quiz/4')
 #------------------------------ data code ------------------------------
 learn_data = [
     {
@@ -141,22 +141,26 @@ quiz_4_data = [
     {
         "q_type": 4,
         "roman": "iie",
-        "eng": "no"
+        "eng": "no",
+        "audio": os.path.join("../" + app.config['quiz_4_audio'], 'iie.mp3')
     },
     {
         "q_type": 4,
         "roman": "iou",
-        "eng": "sulfur"
+        "eng": "sulfur",
+        "audio": os.path.join("../" + app.config['quiz_4_audio'], 'iou.mp3')
     },
     {
         "q_type": 4,
         "roman": "ooi",
-        "eng": "many"
+        "eng": "many",
+        "audio": os.path.join("../" + app.config['quiz_4_audio'], 'ooi.mp3')
     }
 ]
 
 #------------------------------ server code ------------------------------
 
+# 
 '''
 q_num: number of quizzes sampled from the quizzes pool
 q_selected_data: quizzes randomly sampled in the size of q_num
@@ -262,6 +266,29 @@ def quiz_valid(id):
                         break
         if result["correct"] == "True":
             correct_dict[2] = 1
+        c_num = 0
+        for i in range(1, q_num + 1):
+            c_num += correct_dict[i]
+        return jsonify(newrecord=result)
+    elif json_data["q_type"] == 4:
+        if json_data["eng"] == "no":
+            if json_data["user_answer"] == "iie":
+                result = {"correct": "True"}
+                correct_dict[6] = 1
+            else:
+                result = {"correct": "False"}
+        if json_data["eng"] == "sulfur":
+            if json_data["user_answer"] == "iou":
+                result = {"correct": "True"}
+                correct_dict[7] = 1
+            else:
+                result = {"correct": "False"}
+        if json_data["eng"] == "many":
+            if json_data["user_answer"] == "ooi":
+                result = {"correct": "True"}
+                correct_dict[8] = 1
+            else:
+                result = {"correct": "False"}
         c_num = 0
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
