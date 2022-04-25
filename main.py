@@ -120,32 +120,38 @@ quiz_3_data = [
     {
         "q_type": 3,
         "hiragana": "あおい",
-        "roman": "aoi"
+        "roman": "aoi",
+        "eng": "blue"
     },
     {
         "q_type": 3,
         "hiragana": "おおう",
-        "roman": "oou"
+        "roman": "oou",
+        "eng": "cover"
     },
     {
         "q_type": 3,
         "hiragana": "いいあう",
-        "roman": "iiau"
+        "roman": "iiau",
+        "eng": "debate"
     }
 ]
 
 quiz_4_data = [
     {
         "q_type": 4,
-        "roman": "iie"
+        "roman": "iie",
+        "eng": "no"
     },
     {
         "q_type": 4,
-        "roman": "iou"
+        "roman": "iou",
+        "eng": "sulfur"
     },
     {
         "q_type": 4,
-        "roman": "ooi"
+        "roman": "ooi",
+        "eng": "many"
     }
 ]
 
@@ -158,10 +164,11 @@ user_result: a list of T/F records the validation records
 c_num: the total correct number
 '''
 
-q_num = 4
+q_num = 8
 q_selected_data = []
 user_result = []
 c_num = 0
+w_num = 0
 # use correct dict to record the number of correctly answered quizzes
 correct_dict = {}
 
@@ -170,12 +177,15 @@ for i in range(1, q_num + 1):
 
 
 def init_data():
-    q_data = quiz_1_data + quiz_2_data + quiz_3_data + quiz_4_data
+    q_1_data = random.sample(quiz_1_data, 1)
+    q_2_data = random.sample(quiz_2_data, 1)
+    q_data = q_1_data + q_2_data + quiz_3_data + quiz_4_data
     global q_selected_data
-    q_selected_data = random.sample(q_data, q_num)
+    q_selected_data = q_data
     for i in range(q_num):
         q_selected_data[i]["q_id"] = i
     global user_result
+    print(q_data)
     user_result = list()
 
 init_data()
@@ -208,6 +218,7 @@ def learn(id):
 def quiz_valid(id):
     cur_data = q_selected_data[id]
     global c_num
+    global w_num
     global q_num
     # write your check code here
     # and validate the c_num via ajax
@@ -231,6 +242,8 @@ def quiz_valid(id):
                         break
         if result["correct"] == "True":
             correct_dict[1] = 1
+        else:
+            w_num += 1
         c_num = 0
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
@@ -253,6 +266,8 @@ def quiz_valid(id):
                         break
         if result["correct"] == "True":
             correct_dict[2] = 1
+        else: 
+            w_num += 1
         c_num = 0
         for i in range(1, q_num + 1):
             c_num += correct_dict[i]
