@@ -1,0 +1,28 @@
+body{
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    background-color:beige;
+}
+.hiragana_learn{
+    border-style: solid;
+    height: 360px;
+    /* background-image: radial-gradient(rgb(234, 234, 234), white); */
+    background-color: white;
+    padding-top: 50px;
+}
+.text_learn{
+    padding-left: 80px;
+    font-size: xx-large;
+}
+.got_it_learn{
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: xx-large;
+    width: 160px;
+    cursor: pointer;
+}
+.indent_gotit{
+    padding-left: 500px;
+}
