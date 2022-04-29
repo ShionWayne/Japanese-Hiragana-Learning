@@ -1,0 +1,44 @@
+body{
+    height: 100%; 
+    margin: 0;
+    padding: 0;
+    background-color:beige;
+}
+
+.warn{
+    background: rgb(224, 146, 146);
+    color: red;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 100px 8%;
+    margin: 100px 40px 30px 40px;
+}
+.relearn{
+    border-radius: 10px;
+    background-color: rgb(180, 25, 25);
+    color: white;
+    font-size: x-large;
+    width: 160px;
+    cursor: pointer;
+    padding: 5px 0px;
+    margin-left: 20%;
+}
+.cont{
+    margin-left: 30%;
+    font-size: large;
+}
+
+.cont:link {
+    color: grey;
+    text-decoration: underline;
+}
+.cont:visited {
+    color: grey;
+    text-decoration: underline;
+}
+.cont:hover {
+    color: grey;
+}
+.cont:active {
+    color: grey;
+}
