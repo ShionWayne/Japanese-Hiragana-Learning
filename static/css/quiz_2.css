@@ -1,41 +1,84 @@
-
 #quiz_2_content {
     margin-top: 50px;
 }
 
 #quiz_2_instruct{
-    margin-top: 50px;
+    font-size: xx-large;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .quiz_2_source-box {
-    background-color: rgb(168, 166, 166);
-    padding: 2%;
-    max-width: 200px;
+    height: 60px;
+    width: 100px;
+    font-size: 40px;
+    border-style: solid;
     text-align: center;
+    background-image: linear-gradient(to bottom left, rgb(240, 240, 240), lightgrey);
     z-index: 10;
 }
 
 .quiz_2_target-box {
-    background-color: rgb(211, 162, 133);
-    padding: 2%;
-    max-width: 200px;
+    height: 80px;
+    width: 320px;
+    font-size: 40px;
+    border-style: solid;
     text-align: center;
+    padding-top: 10px;
+    background-image: linear-gradient(to bottom left, rgb(240, 240, 240), lightgrey);
     z-index: 5;
 }
 
 .quiz-2-row {
-    margin-bottom: 50px;
-}
-.green_zone{
-    background: lawngreen;
-    color: green;
-}
-.red_zone{
-    background: lightcoral;
-    color: red;
-}
-.result_word{
-    font-weight: bold;
-    margin-right: 300px;
+    margin-bottom: 20px;
 }
 
+/* .result_word{
+    font-weight: bold;
+    margin-right: 300px;
+} */
+
+.quiz2_submit{
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: x-large;
+    width: 100px;
+    cursor: pointer;
+    margin-left: 40%;
+    margin-bottom: 20px;
+}
+.green_zone{
+    background: rgb(159, 221, 159);
+    color: green;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 20px 4%;
+}
+#next_button_correct{
+    border-radius: 10px;
+    background-color: rgb(3, 110, 3);
+    color: white;
+    font-size: x-large;
+    width: 120px;
+    cursor: pointer;
+    margin-left: 79%;
+    padding: 5px 0px;
+}
+.red_zone{
+    background: rgb(224, 146, 146);
+    color: red;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 20px 4%;
+}
+#try_again_button{
+    border-radius: 10px;
+    background-color: rgb(180, 25, 25);
+    color: white;
+    font-size: x-large;
+    width: 160px;
+    cursor: pointer;
+    margin-left: 61%;
+    padding: 5px 0px;
+}
