@@ -224,8 +224,9 @@ w_num = 0
 # use correct dict to record the number of correctly answered quizzes
 correct_dict = {}
 
-for i in range(1, q_num + 1):
-    correct_dict[i] = 0
+def init_correct_dict(q_num):
+    for i in range(q_num):
+        correct_dict[i] = 0
 
 
 def init_data():
@@ -242,6 +243,7 @@ def init_data():
         q_selected_data[i]["q_id"] = i
     global user_result
     user_result = list()
+    init_correct_dict(q_num)
 
 init_data()
 
@@ -281,6 +283,7 @@ def quiz_valid(id):
     json_data = request.get_json()
     # print(json_data)
     user_result.append(json_data)
+
     if cur_data["q_type"] == 1:
         answer = []
         for element in json_data["user_answer"]:
@@ -297,11 +300,11 @@ def quiz_valid(id):
                         result["correct"] = "False"
                         break
         if result["correct"] == "True":
-            correct_dict[1] = 1
+            correct_dict[id] = 1
         else:
             w_num += 1
         c_num = 0
-        for i in range(1, q_num + 1):
+        for i in range(q_num):
             c_num += correct_dict[i]
         if w_num == 3:
             wrong3 = 1
@@ -325,11 +328,11 @@ def quiz_valid(id):
                         result["correct"] = "False"
                         break
         if result["correct"] == "True":
-            correct_dict[2] = 1
+            correct_dict[id] = 1
         else: 
             w_num += 1
         c_num = 0
-        for i in range(1, q_num + 1):
+        for i in range(q_num):
             c_num += correct_dict[i]
         if w_num == 3:
             wrong3 = 1
@@ -340,26 +343,26 @@ def quiz_valid(id):
         if json_data["eng"] == "blue":
             if json_data["user_answer"] == "aoi":
                 result = {"correct": "True"}
-                correct_dict[3] = 1
+                correct_dict[id] = 1
             else:
                 result = {"correct": "False"}
                 w_num += 1
         if json_data["eng"] == "cover":
             if json_data["user_answer"] == "oou":
                 result = {"correct": "True"}
-                correct_dict[4] = 1
+                correct_dict[id] = 1
             else:
                 result = {"correct": "False"}
                 w_num += 1
         if json_data["eng"] == "debate":
             if json_data["user_answer"] == "iiau":
                 result = {"correct": "True"}
-                correct_dict[5] = 1
+                correct_dict[id] = 1
             else:
                 result = {"correct": "False"}
                 w_num += 1
         c_num = 0
-        for i in range(1, q_num + 1):
+        for i in range(q_num):
             c_num += correct_dict[i]
         if w_num == 3:
             wrong3 = 1
@@ -370,37 +373,58 @@ def quiz_valid(id):
         if json_data["eng"] == "no":
             if json_data["user_answer"] == "iie":
                 result = {"correct": "True"}
-                correct_dict[6] = 1
+                correct_dict[id] = 1
             else:
                 result = {"correct": "False"}
                 w_num += 1
         if json_data["eng"] == "sulfur":
             if json_data["user_answer"] == "iou":
                 result = {"correct": "True"}
-                correct_dict[7] = 1
+                correct_dict[id] = 1
             else:
                 result = {"correct": "False"}
                 w_num += 1
         if json_data["eng"] == "many":
             if json_data["user_answer"] == "ooi":
                 result = {"correct": "True"}
-                correct_dict[8] = 1
+                correct_dict[id] = 1
             else:
                 result = {"correct": "False"}
                 w_num += 1
         c_num = 0
-        for i in range(1, q_num + 1):
+        for i in range(q_num):
             c_num += correct_dict[i]
         if w_num == 3:
             wrong3 = 1
             w_num = 0
         return jsonify(newrecord=result, wrong3=wrong3)
     
+    # json_data for quiz 5: string
     elif cur_data["q_type"] == 5:
-        if json_data == cur_data["correct_order"]:
-            return jsonify(validation=True)
+        validation = json_data == cur_data["correct_order"]
+        if validation == True:
+            correct_dict[id] = 1
         else:
-            return jsonify(validation=False)
+            w_num += 1
+        # update c_num and w_num here
+        c_num = 0
+        for i in range(q_num):
+            c_num += correct_dict[i]
+        if w_num == 3:
+            wrong3 = 1
+            w_num = 0
+        return jsonify(validation=validation, wrong3=wrong3)
+        #     # update c_num
+        #     # for i in range(1, q_num + 1):
+        #     #     c_num += correct_dict[i]
+        #     return jsonify(validation=True)
+        # else:
+        #     # update w_num and send to ajax
+        #     w_num += 1
+        #     if w_num == 3:
+        #         wrong3 = 1
+        #         w_num = 0
+        #     return jsonify(validation=False, wrong3=wrong3)
 
 
 @app.route('/quiz/<int:id>')
@@ -457,6 +481,9 @@ def quiz(id):
 
 @app.route('/quiz_end')
 def quiz_end():
+    # reset correct_dict to None
+    global correct_dict
+    init_correct_dict(q_num)
     return render_template('end.html', q_num=q_num, c_num=c_num)
 
 @app.route('/')

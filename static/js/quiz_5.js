@@ -57,7 +57,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(select_val),
             success: function(result){
-                console.log(result);
+                // console.log(result);
                 let validtion = result["validation"];
                 console.log(validtion);
                 if (validtion == true){
@@ -74,7 +74,8 @@ $(document).ready(function(){
                     }
                 }else{
                     // show error page and reset everything
-                    generate_red_zone("haha");
+                    let wrong_num = result["wrong3"];
+                    generate_red_zone(wrong_num);
                 }
 
             },
