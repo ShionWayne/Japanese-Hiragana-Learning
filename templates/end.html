@@ -4,16 +4,24 @@
 
 <script src="{{ url_for('static',filename='js/end.js') }}"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/end.css') }}">
-<script src="{{ url_for('static',filename='js/end.js') }}"></script>
 <script type="text/javascript">
     let c_num = {{c_num|tojson}}
     let q_num = {{q_num|tojson}}
 </script>
+
+    <div>
+        <br>
+        <img src="{{url_for('static', filename='image/endimg.jpg')}}" alt="endpage image" class="endimg">
+    </div>
     <div class="text">
-            Congratulations! You have mastered the Japanese Hiragana! 
+            Congratulations! 
             <br>
-            <span>Your score is {{c_num}}/{{q_num}}</span>
+            You have mastered the first 5 of Japanese Hiragana! 
             <br>
-            <button id="submit">back to homepage</button>
+            <span>Your score is {{c_num}}/{{q_num}}.</span>
+            <br>
+    </div>
+    <div>
+        <button id="submit">Back to Homepage</button>
     </div>
 {% endblock %}
