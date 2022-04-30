@@ -12,13 +12,14 @@
        let data_l = data.option_list.length;
     </script>
 
-    <h4 id="quiz_3_instruct">
-        Select the correct order of the strokes in the following hiragana:
-    </h4>
+    <div id="quiz_3_instruct">
+        Select the correct order of strokes of the following hiragana:
+    </div>
 
     <div class="row">
-        <div class="col-sm-6">
-            <img src="{{ data.image }}" alt="" class="img-fluid">
+        <div class="col-2"></div>
+        <div class="col-4">
+            <img src="{{ data.image }}" alt="hiragana_stroke_image" class="img-fluid">
         </div>
 
         <div class="col-md-6" id="select-container">
@@ -28,7 +29,7 @@
                 <label class="form-check-label" for="inlineRadio1">{{ i }}</label>
             </div>
             {% endfor %}
-            <button id="quiz_5_submit">Submit</button>
+            <button id="quiz_5_submit">Check</button>
         </div>
     </div>
 
