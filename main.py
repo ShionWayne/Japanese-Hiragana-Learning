@@ -173,36 +173,36 @@ quiz_5_data = [
         "q_type": 5,
         "hiragana": "a",
         "image": os.path.join("../" + app.config['quiz_5_image'], 'a.png'),
-        "correct_order" : "2,1,3",
-        "option_list": ["1,2,3", "2,1,3", "1,3,2", "2,3,1"]
+        "correct_order" : "2, 1, 3",
+        "option_list": ["1, 2, 3", "2, 1, 3", "1, 3, 2", "2, 3, 1"]
     },
     {
         "q_type": 5,
         "hiragana": "e",
         "image": os.path.join("../" + app.config['quiz_5_image'], 'e.png'),
-        "correct_order": "1,2,3",
-        "option_list": ["2,3,1", "3,2,1", "1,2,3"]
+        "correct_order": "1, 2, 3",
+        "option_list": ["2, 3, 1", "3, 2, 1", "1, 2, 3"]
     },
     {
         "q_type": 5,
         "hiragana": "i",
         "image": os.path.join("../" + app.config['quiz_5_image'], 'i.png'),
-        "correct_order": "1,2",
-        "option_list": ["1,2", "2,1"]
+        "correct_order": "1, 2",
+        "option_list": ["1, 2", "2, 1"]
     },
     {
         "q_type": 5,
         "hiragana": "o",
         "image": os.path.join("../" + app.config['quiz_5_image'], 'o.png'),
-        "correct_order": "2,1,3",
-        "option_list": ["2,1,3", "2,3,1", "1,2,3", "1,3,2"]
+        "correct_order": "2, 1, 3",
+        "option_list": ["2, 1, 3", "2, 3, 1", "1, 2, 3", "1, 3, 2"]
     },
     {
         "q_type": 5,
         "hiragana": "u",
         "image": os.path.join("../" + app.config['quiz_5_image'], 'u.png'),
-        "correct_order": "1,2",
-        "option_list": ["1,2", "2,1"]
+        "correct_order": "1, 2",
+        "option_list": ["1, 2", "2, 1"]
     }
 ]
 
