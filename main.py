@@ -1,6 +1,8 @@
+import json
 import os
 import random
 from email.mime import audio
+from xml.dom import ValidationErr
 from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
@@ -239,7 +241,6 @@ def init_data():
     for i in range(q_num):
         q_selected_data[i]["q_id"] = i
     global user_result
-    print(q_data)
     user_result = list()
 
 init_data()
@@ -278,8 +279,9 @@ def quiz_valid(id):
     # write your check code here
     # and validate the c_num via ajax
     json_data = request.get_json()
+    # print(json_data)
     user_result.append(json_data)
-    if json_data["q_type"] == 1:
+    if cur_data["q_type"] == 1:
         answer = []
         for element in json_data["user_answer"]:
             if len(element) == 2:
@@ -306,7 +308,7 @@ def quiz_valid(id):
             w_num = 0
         return jsonify(newrecord=result, wrong3=wrong3)
 
-    elif json_data["q_type"] == 2:
+    elif cur_data["q_type"] == 2:
         answer = []
         for element in json_data["user_answer"]:
             if len(element) == 2:
@@ -334,7 +336,7 @@ def quiz_valid(id):
             w_num = 0
         return jsonify(newrecord=result, wrong3=wrong3)
 
-    elif json_data["q_type"] == 3:
+    elif cur_data["q_type"] == 3:
         if json_data["eng"] == "blue":
             if json_data["user_answer"] == "aoi":
                 result = {"correct": "True"}
@@ -364,7 +366,7 @@ def quiz_valid(id):
             w_num = 0
         return jsonify(newrecord=result, wrong3=wrong3)
 
-    elif json_data["q_type"] == 4:
+    elif cur_data["q_type"] == 4:
         if json_data["eng"] == "no":
             if json_data["user_answer"] == "iie":
                 result = {"correct": "True"}
@@ -393,6 +395,12 @@ def quiz_valid(id):
             wrong3 = 1
             w_num = 0
         return jsonify(newrecord=result, wrong3=wrong3)
+    
+    elif cur_data["q_type"] == 5:
+        if json_data == cur_data["correct_order"]:
+            return jsonify(validation=True)
+        else:
+            return jsonify(Validation=False)
 
 
 @app.route('/quiz/<int:id>')

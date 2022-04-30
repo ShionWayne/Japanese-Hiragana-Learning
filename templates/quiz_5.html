@@ -7,23 +7,8 @@
 
 {% block content %}
     <script>
-        let data = {{data|tojson}};
-        let data_l = data.option_list.length;
-        var select_id = 0;
-        function get_id(id){
-            select_id = id;
-            console.log(select_id);
-        }
-
-        $(document).ready(function(){
-            for(var i=1; i < data_l+1; i++){
-                $("#Radio"+i.toString()).onclick = get_id(i);
-            }
-            $("#quiz_5_submit").click(function(){
-                console.log(select_id);
-            })
-        })
-
+       let data = {{data|tojson}};
+       let data_l = data.option_list.length;
     </script>
 
     <h4 id="quiz_3_instruct">
@@ -38,12 +23,16 @@
         <div class="col-md-6" id="select-container">
             {% for i in data.option_list %}
             <div class="form-check q_5_option">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio{{loop.index}}" value="option1">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio{{loop.index}}" value="{{i}}">
                 <label class="form-check-label" for="inlineRadio1">{{ i }}</label>
             </div>
             {% endfor %}
             <button id="quiz_5_submit">Submit</button>
         </div>
+    </div>
+
+    <div id="quiz5_result_zone">
+        
     </div>
 
 

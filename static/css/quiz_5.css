@@ -6,3 +6,12 @@
 .q_5_option{
     margin-bottom: 10px;
 }
+
+.green_zone{
+    background: lawngreen;
+    color: green;
+}
+.red_zone{
+    background: lightcoral;
+    color: red;
+}
