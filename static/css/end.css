@@ -4,17 +4,23 @@ body{
     padding: 0;
     background-color:beige;
 }
+.endimg{
+    width: 60%;
+    height: auto;
+    margin-left: 20%;
+}
 .text{
-    top: 100px;
-    text-align: center;
+    margin: 10px 14%;
     font-size: xx-large;
     font-weight: bold;
 }
-.italic{
-    font-style: italic;
-}
 #submit{
-    position: relative;
-    left: 300px;
-    top: 100px;
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: x-large;
+    width: 240px;
+    cursor: pointer;
+    margin-left: 40%;
+    margin-bottom: 20px;
 }
