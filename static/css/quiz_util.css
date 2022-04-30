@@ -1,23 +1,8 @@
-.warn {
-    background: rgb(224, 146, 146);
+.green_zone{
+    background: lawngreen;
+    color: green;
+}
+.red_zone{
+    background: lightcoral;
     color: red;
-    font-size: xx-large;
-    font-weight: bold;
-    padding: 100px 8%;
-    margin: 100px 40px 30px 40px;
-}
-
-.correct {
-    
-}
-
-.relearn {
-    border-radius: 10px;
-    background-color: rgb(180, 25, 25);
-    color: white;
-    font-size: x-large;
-    width: 160px;
-    cursor: pointer;
-    padding: 5px 0px;
-    margin-left: 20%;
 }

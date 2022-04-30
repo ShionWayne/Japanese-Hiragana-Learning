@@ -400,7 +400,7 @@ def quiz_valid(id):
         if json_data == cur_data["correct_order"]:
             return jsonify(validation=True)
         else:
-            return jsonify(Validation=False)
+            return jsonify(validation=False)
 
 
 @app.route('/quiz/<int:id>')
