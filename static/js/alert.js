@@ -1,4 +1,5 @@
 function alert(wrong_num){
+    // wrong_num == 1 means it has 3 consecutive wrong tries
     if (wrong_num == 1) {
         $("#content").empty()
 
