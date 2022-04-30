@@ -12,6 +12,7 @@ app.config['stroke_folder'] = stroke_folder
 app.config['learn_audio'] = 'static/audio/learn/'
 app.config['quiz_2_audio'] = os.path.join(audio_folder, 'quiz/2')
 app.config['quiz_4_audio'] = os.path.join(audio_folder, 'quiz/4')
+app.config['quiz_5_image'] = os.path.join(image_folder, 'stroke_order')
 #------------------------------ data code ------------------------------
 learn_data = [
     {
@@ -165,6 +166,44 @@ quiz_4_data = [
     }
 ]
 
+quiz_5_data = [
+    {
+        "q_type": 5,
+        "hiragana": "a",
+        "image": os.path.join("../" + app.config['quiz_5_image'], 'a.png'),
+        "correct_order" : "2,1,3",
+        "option_list": ["1,2,3", "2,1,3", "1,3,2", "2,3,1"]
+    },
+    {
+        "q_type": 5,
+        "hiragana": "e",
+        "image": os.path.join("../" + app.config['quiz_5_image'], 'e.png'),
+        "correct_order": "1,2,3",
+        "option_list": ["2,3,1", "3,2,1", "1,2,3"]
+    },
+    {
+        "q_type": 5,
+        "hiragana": "i",
+        "image": os.path.join("../" + app.config['quiz_5_image'], 'i.png'),
+        "correct_order": "1,2",
+        "option_list": ["1,2", "2,1"]
+    },
+    {
+        "q_type": 5,
+        "hiragana": "o",
+        "image": os.path.join("../" + app.config['quiz_5_image'], 'o.png'),
+        "correct_order": "2,1,3",
+        "option_list": ["2,1,3", "2,3,1", "1,2,3", "1,3,2"]
+    },
+    {
+        "q_type": 5,
+        "hiragana": "u",
+        "image": os.path.join("../" + app.config['quiz_5_image'], 'u.png'),
+        "correct_order": "1,2",
+        "option_list": ["1,2", "2,1"]
+    }
+]
+
 #------------------------------ server code ------------------------------
 
 # 
@@ -188,9 +227,13 @@ for i in range(1, q_num + 1):
 
 
 def init_data():
+    # ratio: 1:1:2:2:2
     q_1_data = random.sample(quiz_1_data, 1)
     q_2_data = random.sample(quiz_2_data, 1)
-    q_data = q_1_data + q_2_data + quiz_3_data + quiz_4_data
+    q_3_data = random.sample(quiz_3_data, 2)
+    q_4_data = random.sample(quiz_4_data, 2)
+    q_5_data = random.sample(quiz_5_data, 2)
+    q_data = q_1_data + q_2_data + q_3_data + q_4_data + q_5_data
     global q_selected_data
     q_selected_data = q_data
     for i in range(q_num):
