@@ -9,7 +9,6 @@ var source_list = []
 
 function randomsort(a, b) {
     return Math.random()>.5 ? -1 : 1;
-    //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
 }
 
 function build_random_list() {
@@ -36,12 +35,13 @@ function build_drag_zone(content){
         let right_block = $("<div>").addClass("col-sm-6")
         let romanization = $("<div>").addClass("quiz_2_target-box")
         romanization.attr("r", target_list[i].roman)
-        romanization.text("Block "+i.toString())
+        // romanization.text("Block "+i.toString())
         let audio = $("<audio>")
         audio.attr("src", target_list[i].audio)
         audio.attr("controls", "controls")
+        romanization.append(audio)
         right_block.append(romanization)
-        right_block.append(audio)
+        // right_block.append(audio)
         line.append(right_block)
         $("#quiz_2_content").append(line)
     }
