@@ -14,7 +14,7 @@ function randomsort(a, b) {
 
 function build_random_list() {
     for (i=0; i < content.data.length; i++){
-        target_list.push({"roman": content.data[i].roman,"audio": content.data[i].audio})
+        target_list.push({"roman": content.data[i].roman,"audio": content.data[i].audio, "eng": content.data[i].eng})
         source_list.push(content.data[i].hiragana)
     }
     target_list.sort(randomsort)
@@ -33,13 +33,22 @@ function build_drag_zone(content){
         hiragana.attr("h", source_list[i])
         left_block.append(hiragana)
         line.append(left_block)
-        let right_block = $("<div>").addClass("col-sm-6")
+        let right_block = $("<div>").addClass("col-sm-6 right_block")
+        // let right_block_row = $("<div>").addClass("row right_block row")
+        // let right_block1 = $("<div>").addClass("col-sm-6")
+        right_block.attr("id", "eng" + i.toString())
         let romanization = $("<div>").addClass("quiz_2_target-box")
         romanization.attr("r", target_list[i].roman)
         romanization.text("Block "+i.toString())
         let audio = $("<audio>")
         audio.attr("src", target_list[i].audio)
         audio.attr("controls", "controls")
+        // right_block.append(right_block_row)
+        // right_block_row.append(right_block1)
+        // let eng = $("<div>").addClass("eng")
+        // eng.text(target_list[i].eng.toString())
+        // console.log("eng" + target_list[i].eng.toString())
+        // $('"#eng' + i.toString() + '"').append(eng)
         right_block.append(romanization)
         right_block.append(audio)
         line.append(right_block)
@@ -120,6 +129,12 @@ $(document).ready(function (){
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
+                    for (i=0; i < target_list.length; i++){
+                        let eng = $("<div>").addClass("eng")
+                        eng.text(target_list[i].eng.toString())
+                        console.log("eng" + target_list[i].eng.toString())
+                        $('"#eng' + i.toString() + '"').append(eng)
+                    }
                     if(pid != qnum-1){
                         $("#next_button_correct").click(function(){
                             window.location.href = '/quiz/' + (pid+1).toString();
