@@ -1,0 +1,63 @@
+{% extends "quiz_layout.html"  %}
+
+{% block individual_css_or_js_tags %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_5.css') }}">
+<script src="{{ url_for('static',filename='js/quiz_5.js') }}"></script>
+<script src="{{ url_for('static',filename='js/quiz_util.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<script>
+  let data = {{data|tojson}};
+  let data_l = data.option_list.length;
+</script>
+
+<div id="quiz_3_instruct">
+  Select the correct order of strokes of the following hiragana:
+</div>
+
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-4">
+    <img src="{{ data.image }}" alt="hiragana_stroke_image" class="img-fluid">
+  </div>
+
+  <div class="col-md-6" id="select-container">
+    {% for i in data.option_list %}
+    <div class="form-check q_5_option">
+      <input class="form-check-input" type="radio" name="inlineRadioOptions" id="Radio{{loop.index}}" value="{{i}}">
+      <label class="form-check-label" for="inlineRadio1">{{ i }}</label>
+    </div>
+    {% endfor %}
+    <button id="quiz_5_submit">Check</button>
+  </div>
+</div>
+
+<div id="quiz5_result_zone">
+
+</div>
+
+
+
+<!-- <h4 id="quiz_4_instruct">
+    Type in romanization according to audio sound:
+</h4>
+
+<div id="quiz_4_content">
+    <div id="hiragana-question">
+        <audio id="audio" controls="controls" src={{data.audio}}></audio>
+    </div>
+    <div id="quiz_4_question_instruct">
+        What is this word? Type its Romanization:
+    </div>
+    <div id="quiz_4_input_container">
+        <div class="form-inline sm-4">
+            <div class="form-group">
+                <input type="text" id="quiz_4_input">
+            </div>
+            <button class="btn btn-primary mb-2" id="quiz_4_button">Check</button>
+        </div>
+    </div>
+    <div id="quiz_4_result_zone"></div>
+</div> -->
+{% endblock %}

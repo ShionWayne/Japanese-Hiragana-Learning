@@ -1,0 +1,65 @@
+#select-container{
+    padding-top: 60px;
+    font-size: x-large;
+    /* margin-left: 5%; */
+}
+
+.q_5_option{
+    margin-bottom: 10px;
+}
+
+input{
+    bottom: 10px;
+}
+
+#quiz_3_instruct{
+    font-size: xx-large;
+    margin-top: 40px;
+    /* margin-bottom: 40px; */
+}
+
+#quiz_5_submit{
+    border-radius: 10px;
+    background-color: cornflowerblue;
+    color: white;
+    font-size: x-large;
+    width: 100px;
+    cursor: pointer;
+    /* margin-left: 5%; */
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.green_zone{
+    background: rgb(159, 221, 159);
+    color: green;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 20px 4%;
+}
+#next_button_correct{
+    border-radius: 10px;
+    background-color: rgb(3, 110, 3);
+    color: white;
+    font-size: x-large;
+    width: 120px;
+    cursor: pointer;
+    margin-left: 79%;
+    padding: 5px 0px;
+}
+.red_zone{
+    background: rgb(224, 146, 146);
+    color: red;
+    font-size: xx-large;
+    font-weight: bold;
+    padding: 20px 4%;
+}
+#try_again_button{
+    border-radius: 10px;
+    background-color: rgb(180, 25, 25);
+    color: white;
+    font-size: x-large;
+    width: 160px;
+    cursor: pointer;
+    margin-left: 61%;
+    padding: 5px 0px;
+}
