@@ -6,6 +6,8 @@
 {% extends "quiz_3.html" %}
 {% elif data.q_type==4 %}
 {% extends "quiz_4.html" %}
+{% elif data.q_type==5 %}
+{% extends "quiz_5.html" %}
 {% else %}
 Not found this type: {{ data.q_type }}.
 {% endif %}

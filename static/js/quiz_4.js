@@ -1,8 +1,9 @@
 function generate_green_zone(){
     $("#quiz_4_result_zone").empty()
     $("#quiz_4_result_zone").addClass("green_zone")
-    let right = $("<span>").text("Great! This word means" + data.eng)
+    let right = $("<span>").text("Great! This word means " + data.eng)
     right.addClass("result_word")
+
     $("#quiz_4_result_zone").append(right)
     let next_button = $("<button>")
     next_button.attr("id", "next_button_correct")
@@ -14,7 +15,7 @@ function generate_red_zone(w3){
     $("#quiz_4_result_zone").empty()
     $("#quiz_4_result_zone").addClass("red_zone")
     let wrong = $("<span>").text("Wrong answer!")
-    wrong.addClass("result_word")
+    // wrong.addClass("result_word")
     $("#quiz_4_result_zone").append(wrong)
     let try_again = $("<button>")
     try_again.attr("id", "try_again_button")
