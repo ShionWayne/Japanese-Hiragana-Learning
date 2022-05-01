@@ -23,6 +23,7 @@ function generate_red_zone(w3){
     $("#quiz_3_result_zone").append(try_again)
     $("#try_again_button").click(function (){
         $("#quiz_3_button").prop('disabled', false);
+        $("#quiz_3_input").prop('disabled', false);
         $("#quiz_3_input").focus()
         $("#quiz_3_result_zone").removeClass("red_zone")
         $("#quiz_3_result_zone").empty()
@@ -34,6 +35,7 @@ $(document).ready(function () {
     console.log(data.q_type)
     $("#quiz_3_button").click(function (){
         $(this).prop('disabled', true);
+        $("#quiz_3_input").prop('disabled', true);
         console.log("new version")
         let time = new Date()
         let answer_value = $("#quiz_3_input").val()
