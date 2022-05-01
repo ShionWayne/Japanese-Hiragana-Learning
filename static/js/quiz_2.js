@@ -50,12 +50,16 @@ function build_drag_zone(content){
         // $('"#eng' + i.toString() + '"').append(eng)
         romanization.append(audio)
         right_block.append(romanization)
+        let eng = $("<div>").addClass("english")
+        eng.text(target_list[i].eng)
+        right_block.append(eng)
         // right_block.append(audio)
         line.append(right_block)
         $("#quiz_2_content").append(line)
     }
     set_hiragana_draggable()
     set_romaization_droppable()
+    $(".english").hide()
     $(".quiz2_submit").removeAttr("disabled")
 }
 
@@ -69,6 +73,12 @@ function set_romaization_droppable(){
             user_answer.push(answer)
             console.log(user_answer)
             $(this).droppable({disabled: true})
+            $.each($(".quiz_2_source-box"), function (){
+                let h = $(this).attr("h")
+                if (h == answer_h){
+                    $(this).draggable({disabled: "true"})
+                }
+            })
         }
     })
 }
@@ -132,12 +142,15 @@ $(document).ready(function (){
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
-                    for (i=0; i < target_list.length; i++){
-                        let eng = $("<div>").addClass("eng")
-                        eng.text(target_list[i].eng.toString())
-                        console.log("eng" + target_list[i].eng.toString())
-                        $('"#eng' + i.toString() + '"').append(eng)
-                    }
+                    // for (i=0; i < target_list.length; i++){
+                    //     let eng = $("<div>").addClass("eng")
+                    //     eng.text(target_list[i].eng.toString())
+                    //     console.log("eng" + target_list[i].eng.toString())
+                    //     let eng_id = '"#eng'+i.toString()+'"'
+                    //     console.log(eng_id)
+                    //     $(eng_id).append(eng)
+                    // }
+                    $(".english").show()
                     if(pid != qnum-1){
                         $("#next_button_correct").click(function(){
                             window.location.href = '/quiz/' + (pid+1).toString();

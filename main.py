@@ -290,7 +290,6 @@ def quiz_valid(id):
     user_result.append(json_data)
 
     if cur_data["q_type"] == 1:
-        print("1 ", json_data)
         answer = []
         for element in json_data["user_answer"]:
             if len(element) == 2:
@@ -318,7 +317,6 @@ def quiz_valid(id):
         return jsonify(newrecord=result, wrong3=wrong3)
 
     elif cur_data["q_type"] == 2:
-        print("2 ", json_data)
         answer = []
         for element in json_data["user_answer"]:
             if len(element) == 2:

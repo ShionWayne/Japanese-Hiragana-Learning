@@ -5,6 +5,7 @@
 }
 .help_div{
     height: 100px;
+    display: inline-block;
 }
 .quiz1_hiragana{
     height: 60px;
@@ -24,6 +25,7 @@
     padding-top: 5px;
     background-image: linear-gradient(to bottom left, rgb(240, 240, 240), lightgrey);
     z-index: 5;
+    display: inline-block;
 }
 
 /* .result_word{
@@ -83,4 +85,9 @@
     cursor: pointer;
     margin-left: 61%;
     padding: 5px 0px;
+}
+.english{
+    display: inline-block;
+    color: green;
+    font-size: 30px;
 }
