@@ -208,7 +208,6 @@ quiz_5_data = [
 
 #------------------------------ server code ------------------------------
 
-# 
 '''
 q_num: number of quizzes sampled from the quizzes pool
 q_selected_data: quizzes randomly sampled in the size of q_num
@@ -414,18 +413,6 @@ def quiz_valid(id):
             wrong3 = 1
             w_num = 0
         return jsonify(validation=validation, wrong3=wrong3)
-        #     # update c_num
-        #     # for i in range(1, q_num + 1):
-        #     #     c_num += correct_dict[i]
-        #     return jsonify(validation=True)
-        # else:
-        #     # update w_num and send to ajax
-        #     w_num += 1
-        #     if w_num == 3:
-        #         wrong3 = 1
-        #         w_num = 0
-        #     return jsonify(validation=False, wrong3=wrong3)
-
 
 @app.route('/quiz/<int:id>')
 def quiz(id):
@@ -433,50 +420,7 @@ def quiz(id):
     if id > q_num:
         return "error: no id found"
     cur_q = q_selected_data[id]
-    # wrong3 = 0
-    # if w_num == 3:
-    #     wrong3 = 1
-    #     w_num = 0
     return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
-
-    
-    # if id == 1:
-    #     if request.method == 'GET':
-    #         return render_template("quiz_1.html", content=quizzes[0])
-    #     else:
-    #         json_data = request.get_json()
-    #         user_result[1].append(json_data)
-    #         answer = []
-    #         for element in json_data["user_answer"]:
-    #             if len(element) == 2:
-    #                 answer.append(element)
-    #         result = {"correct": "True"}
-
-    #         if len(answer) != 3:
-    #             result["correct"] = "False"
-    #         else:
-    #             for pair in answer:
-    #                 for i in range(3):
-    #                     solution = quizzes[0]["problem_and_answer"][i]
-    #                     if solution["Romanization"] == pair["Romanization"] and solution["hiragana"] != pair["hiragana"]:
-    #                         result["correct"] = "False"
-    #                         break
-    #         return jsonify(newrecord=result)
-    # if id == 2:
-    #     return render_template("quiz_2.html", data=quiz_2_data, p_id=id)
-    # if id == 3:
-    #     if request.method == 'GET':
-    #         return render_template("quiz_3.html", data=quiz_3_data, p_id=id)
-    #     else:
-    #         json_data = request.get_json()
-    #         user_result[3].append(json_data)
-    #         result = {"correct": "True"}
-    #         if json_data["user_answer"] != quiz_3_data[0]["eng"]:
-    #             result["correct"] = "False"
-    #         return jsonify(newrecord=result)
-    # if id == 4:
-    #     return render_template("quiz_4.html", data=quiz_4_data, p_id=id)
-    # return "this is quiz {}".format(str(id))
 
 
 @app.route('/quiz_end')
