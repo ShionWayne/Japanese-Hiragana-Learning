@@ -1,6 +1,7 @@
 function reset_question(data_l){
     for(let i=1; i < data_l+1; i++){
         $("#Radio"+i.toString())[0].checked = false;
+        $("#Radio"+i.toString()).prop('disabled', false);
     }
 }
 
@@ -37,17 +38,29 @@ function generate_red_zone(w3){
     })
 }
 
+function disable_except_selected(s_id){
+    for(let i=1; i < data_l+1; i++){
+        if(i==s_id) {continue;}
+        $("#Radio"+i.toString()).prop('disabled', true);
+    }
+}
+
 $(document).ready(function(){
     // trigger button click for validation
     $("#quiz_5_submit").click(function(){
-        var select_val = 0;
+        var select_val = null;
+        let select_id = 0;
         // iterate all #Radio<Int> to check which one is checked
         for(let i=1; i < data_l+1; i++){
             if($("#Radio"+i.toString())[0].checked){
                 // get the selected value
                 select_val = $("#Radio"+i.toString())[0].value;
+                select_id = i;
             }
         }
+        // disable unselected options
+        disable_except_selected(select_id);
+
         let pid = data.q_id;
         // use ajax to post: q_id, selected_val
         $.ajax({
@@ -57,9 +70,7 @@ $(document).ready(function(){
             contentType: "application/json; charset=utf-8",
             data : JSON.stringify(select_val),
             success: function(result){
-                // console.log(result);
                 let validtion = result["validation"];
-                console.log(validtion);
                 if (validtion == true){
                     // show next page and correct alert
                     generate_green_zone();
