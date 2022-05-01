@@ -42,16 +42,13 @@ function build_drag_zone(content){
         let audio = $("<audio>")
         audio.attr("src", target_list[i].audio)
         audio.attr("controls", "controls")
-<<<<<<< HEAD
         // right_block.append(right_block_row)
         // right_block_row.append(right_block1)
         // let eng = $("<div>").addClass("eng")
         // eng.text(target_list[i].eng.toString())
         // console.log("eng" + target_list[i].eng.toString())
         // $('"#eng' + i.toString() + '"').append(eng)
-=======
         romanization.append(audio)
->>>>>>> 049be8b3ff4806d6dd80c406b531b1c1490ff76a
         right_block.append(romanization)
         // right_block.append(audio)
         line.append(right_block)
@@ -59,6 +56,7 @@ function build_drag_zone(content){
     }
     set_hiragana_draggable()
     set_romaization_droppable()
+    $(".quiz2_submit").removeAttr("disabled")
 }
 
 function set_romaization_droppable(){
@@ -86,6 +84,7 @@ function generate_green_zone(){
     next_button.addClass("btn btn-primary mb-2")
     next_button.text("Next")
     $("#quiz_2_result_zone").append(next_button)
+    $(".quiz2_submit").attr('disabled',"true")
 }
 
 function generate_red_zone(w3){
@@ -98,6 +97,7 @@ function generate_red_zone(w3){
     try_again.attr("id", "try_again_button")
     try_again.text("Try Again!")
     $("#quiz_2_result_zone").append(try_again)
+    $(".quiz2_submit").attr('disabled',"true")
     $("#try_again_button").click(function (){
         build_drag_zone(content)
         $("#quiz_2_result_zone").removeClass("red_zone")

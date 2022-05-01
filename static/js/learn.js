@@ -23,7 +23,7 @@ $(document).ready(function (){
     $(".text_learn").append(line2)
     $(".text_learn").append("<br>")
     $(".text_learn").append(line3)
-    
+
     $(".got_it_learn").click(function(){
         window.location.href = "../startlearning"
     })

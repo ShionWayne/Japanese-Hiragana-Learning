@@ -43,6 +43,7 @@ function build_drag_zone(content){
     }
     set_hiragana_draggable()
     set_romaization_droppable()
+    $(".quiz1_submit").removeAttr("disabled")
 }
 
 function set_romaization_droppable(){
@@ -70,6 +71,7 @@ function generate_green_zone(){
     next_button.addClass("btn btn-primary mb-2")
     next_button.text("Next")
     $("#quiz1_result_zone").append(next_button)
+    $(".quiz1_submit").attr('disabled',"true")
 }
 
 function generate_red_zone(w3){
@@ -82,6 +84,7 @@ function generate_red_zone(w3){
     try_again.attr("id", "try_again_button")
     try_again.text("Try Again!")
     $("#quiz1_result_zone").append(try_again)
+    $(".quiz1_submit").attr('disabled',"true")
     $("#try_again_button").click(function (){
         build_drag_zone(content)
         $("#quiz1_result_zone").removeClass("red_zone")
