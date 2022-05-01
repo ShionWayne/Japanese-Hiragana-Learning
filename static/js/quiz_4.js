@@ -1,8 +1,9 @@
 function generate_green_zone(){
     $("#quiz_4_result_zone").empty()
     $("#quiz_4_result_zone").addClass("green_zone")
-    let right = $("<span>").text("Great!")
-    // right.addClass("result_word")
+    let right = $("<span>").text("Great! This word means " + data.eng)
+    right.addClass("result_word")
+
     $("#quiz_4_result_zone").append(right)
     let next_button = $("<button>")
     next_button.attr("id", "next_button_correct")
@@ -21,6 +22,7 @@ function generate_red_zone(w3){
     try_again.text("Try Again!")
     $("#quiz_4_result_zone").append(try_again)
     $("#try_again_button").click(function (){
+        $("#quiz_4_button").prop('disabled', false);
         $("#quiz_4_input").focus()
         $("#quiz_4_result_zone").removeClass("red_zone")
         $("#quiz_4_result_zone").empty()
@@ -31,6 +33,8 @@ function generate_red_zone(w3){
 $(document).ready(function () {
     $("#quiz_4_button").click(function (){
         console.log("data type:" + data.q_type)
+        $(this).prop('disabled', true);
+        console.log("new version")
         let time = new Date()
         let answer_value = $("#quiz_4_input").val()
         console.log("input+"+answer_value)
