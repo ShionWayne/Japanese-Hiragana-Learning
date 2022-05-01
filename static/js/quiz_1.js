@@ -9,7 +9,6 @@ var source_list = []
 
 function randomsort(a, b) {
     return Math.random()>.5 ? -1 : 1;
-    //用Math.random()函数生成0~1之间的随机数与0.5比较，返回-1或1
 }
 
 function build_random_list() {
@@ -73,7 +72,7 @@ function generate_green_zone(){
     $("#quiz1_result_zone").append(next_button)
 }
 
-function generate_red_zone(){
+function generate_red_zone(w3){
     $("#quiz1_result_zone").empty()
     $("#quiz1_result_zone").addClass("red_zone")
     let wrong = $("<span>").text("Wrong answer!")
@@ -88,6 +87,7 @@ function generate_red_zone(){
         $("#quiz1_result_zone").removeClass("red_zone")
         $("#quiz1_result_zone").empty()
         user_answer = []
+        alert(w3)
     })
 }
 
@@ -111,7 +111,8 @@ $(document).ready(function (){
             data : JSON.stringify(record),
             success: function (result){
                 let res = result["newrecord"]
-
+                let w3 = result["wrong3"]
+                console.log("w3=" + w3)
                 console.log(res)
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
@@ -126,7 +127,7 @@ $(document).ready(function (){
                         });
                     }
                 } else {
-                    generate_red_zone()
+                    generate_red_zone(w3)
                 }
             },
             error: function(request, status, error){
@@ -136,5 +137,5 @@ $(document).ready(function (){
                 console.log(error)
             }
         })
-        })
+    })
 })
