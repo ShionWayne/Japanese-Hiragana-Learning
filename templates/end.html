@@ -9,19 +9,19 @@
     let q_num = {{q_num|tojson}}
 </script>
 
-<div>
-    <br>
-    <img src="{{url_for('static', filename='image/endimg.jpg')}}" alt="endpage image" class="endimg">
-</div>
-<div class="text">
-    Congratulations!
-    <br>
-    You have mastered the first 5 of Japanese Hiragana!
-    <br>
-    <span>Your score is {{c_num}}/{{q_num}}.</span>
-    <br>
-</div>
-<div>
-    <button id="submit">Back to Homepage</button>
-</div>
+    <div>
+        <br>
+        <img src="{{url_for('static', filename='image/endimg.jpg')}}" alt="endpage image" class="endimg">
+    </div>
+    <div class="text">
+            Congratulations! 
+            <br>
+            You have mastered the first 5 of Japanese Hiragana! 
+            <br>
+            <span>Your score is {{c_num}}/{{q_num}}.</span>
+            <br>
+    </div>
+    <div>
+        <button id="submit">Back to Homepage</button>
+    </div>
 {% endblock %}
