@@ -13,7 +13,7 @@ function randomsort(a, b) {
 
 function build_random_list() {
     for (i=0; i < content.problem_and_answer.length; i++){
-        target_list.push(content.problem_and_answer[i].Romanization)
+        target_list.push({"roman": content.problem_and_answer[i].Romanization, "eng": content.problem_and_answer[i].English})
         source_list.push(content.problem_and_answer[i].hiragana)
     }
     target_list.sort(randomsort)
@@ -35,14 +35,19 @@ function build_drag_zone(content){
         line.append(middle_block)
         let right_block = $("<div>").addClass("help_div")
         let romanization = $("<div>").addClass("quiz1_Romanization")
-        romanization.text(target_list[i])
-        romanization.attr("r", target_list[i])
+        romanization.text(target_list[i].roman)
+        romanization.attr("r", target_list[i].roman)
         right_block.append(romanization)
+        let eng = $("<div>").addClass("english")
+        eng.text(target_list[i].eng)
+        right_block.append(eng)
         line.append(right_block)
         $("#quiz1_drag_zone").append(line)
     }
     set_hiragana_draggable()
     set_romaization_droppable()
+    $(".english").hide()
+    $(".quiz1_submit").removeAttr("disabled")
 }
 
 function set_romaization_droppable(){
@@ -55,6 +60,12 @@ function set_romaization_droppable(){
             user_answer.push(answer)
             console.log(user_answer)
             $(this).droppable({disabled: true})
+            $.each($(".quiz1_hiragana"), function (){
+                let h = $(this).attr("h")
+                if (h == answer_h){
+                    $(this).draggable({disabled: "true"})
+                }
+            })
         }
     })
 }
@@ -70,6 +81,7 @@ function generate_green_zone(){
     next_button.addClass("btn btn-primary mb-2")
     next_button.text("Next")
     $("#quiz1_result_zone").append(next_button)
+    $(".quiz1_submit").attr('disabled',"true")
 }
 
 function generate_red_zone(w3){
@@ -82,6 +94,7 @@ function generate_red_zone(w3){
     try_again.attr("id", "try_again_button")
     try_again.text("Try Again!")
     $("#quiz1_result_zone").append(try_again)
+    $(".quiz1_submit").attr('disabled',"true")
     $("#try_again_button").click(function (){
         build_drag_zone(content)
         $("#quiz1_result_zone").removeClass("red_zone")
@@ -117,6 +130,7 @@ $(document).ready(function (){
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
+                    $(".english").show()
                     if(pid != qnum-1){
                         $("#next_button_correct").click(function(){
                             window.location.href = '/quiz/' + (pid+1).toString();

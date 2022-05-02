@@ -13,7 +13,7 @@ function randomsort(a, b) {
 
 function build_random_list() {
     for (i=0; i < content.data.length; i++){
-        target_list.push({"roman": content.data[i].roman,"audio": content.data[i].audio})
+        target_list.push({"roman": content.data[i].roman,"audio": content.data[i].audio, "eng": content.data[i].eng})
         source_list.push(content.data[i].hiragana)
     }
     target_list.sort(randomsort)
@@ -32,21 +32,35 @@ function build_drag_zone(content){
         hiragana.attr("h", source_list[i])
         left_block.append(hiragana)
         line.append(left_block)
-        let right_block = $("<div>").addClass("col-sm-6")
+        let right_block = $("<div>").addClass("col-sm-6 right_block")
+        // let right_block_row = $("<div>").addClass("row right_block row")
+        // let right_block1 = $("<div>").addClass("col-sm-6")
+        right_block.attr("id", "eng" + i.toString())
         let romanization = $("<div>").addClass("quiz_2_target-box")
         romanization.attr("r", target_list[i].roman)
         // romanization.text("Block "+i.toString())
         let audio = $("<audio>")
         audio.attr("src", target_list[i].audio)
         audio.attr("controls", "controls")
+        // right_block.append(right_block_row)
+        // right_block_row.append(right_block1)
+        // let eng = $("<div>").addClass("eng")
+        // eng.text(target_list[i].eng.toString())
+        // console.log("eng" + target_list[i].eng.toString())
+        // $('"#eng' + i.toString() + '"').append(eng)
         romanization.append(audio)
         right_block.append(romanization)
+        let eng = $("<div>").addClass("english")
+        eng.text(target_list[i].eng)
+        right_block.append(eng)
         // right_block.append(audio)
         line.append(right_block)
         $("#quiz_2_content").append(line)
     }
     set_hiragana_draggable()
     set_romaization_droppable()
+    $(".english").hide()
+    $(".quiz2_submit").removeAttr("disabled")
 }
 
 function set_romaization_droppable(){
@@ -59,6 +73,12 @@ function set_romaization_droppable(){
             user_answer.push(answer)
             console.log(user_answer)
             $(this).droppable({disabled: true})
+            $.each($(".quiz_2_source-box"), function (){
+                let h = $(this).attr("h")
+                if (h == answer_h){
+                    $(this).draggable({disabled: "true"})
+                }
+            })
         }
     })
 }
@@ -74,6 +94,7 @@ function generate_green_zone(){
     next_button.addClass("btn btn-primary mb-2")
     next_button.text("Next")
     $("#quiz_2_result_zone").append(next_button)
+    $(".quiz2_submit").attr('disabled',"true")
 }
 
 function generate_red_zone(w3){
@@ -86,6 +107,7 @@ function generate_red_zone(w3){
     try_again.attr("id", "try_again_button")
     try_again.text("Try Again!")
     $("#quiz_2_result_zone").append(try_again)
+    $(".quiz2_submit").attr('disabled',"true")
     $("#try_again_button").click(function (){
         build_drag_zone(content)
         $("#quiz_2_result_zone").removeClass("red_zone")
@@ -120,6 +142,15 @@ $(document).ready(function (){
                 console.log(res.correct === "True")
                 if (res.correct === "True"){
                     generate_green_zone()
+                    // for (i=0; i < target_list.length; i++){
+                    //     let eng = $("<div>").addClass("eng")
+                    //     eng.text(target_list[i].eng.toString())
+                    //     console.log("eng" + target_list[i].eng.toString())
+                    //     let eng_id = '"#eng'+i.toString()+'"'
+                    //     console.log(eng_id)
+                    //     $(eng_id).append(eng)
+                    // }
+                    $(".english").show()
                     if(pid != qnum-1){
                         $("#next_button_correct").click(function(){
                             window.location.href = '/quiz/' + (pid+1).toString();

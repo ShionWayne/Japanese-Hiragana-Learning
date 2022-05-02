@@ -21,7 +21,15 @@
             <span>Your score is {{c_num}}/{{q_num}}.</span>
             <br>
     </div>
+<form action="/" method="post">
     <div>
-        <button id="submit">Back to Homepage</button>
+        <button class="submit" id="submit">Back to Homepage</button>
     </div>
+</form>
+
+<form action="/quiz_start">
+    <div>
+        <button class="submit" id="retry">Retry the Quiz</button>
+    </div>
+</form>
 {% endblock %}

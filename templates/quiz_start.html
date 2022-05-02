@@ -1,0 +1,14 @@
+{% extends "layout.html"  %}
+
+{% block individual_css_or_js_tags %}
+<link rel="stylesheet" href="{{ url_for('static',filename='css/quiz_5.css') }}">
+{% endblock %}
+
+{% block content %}
+<div>
+    This is the quiz start, click the start to start the quiz.
+</div>
+<button>
+    <a href="/quiz/0">Start</a>
+</button>
+{% endblock %}
