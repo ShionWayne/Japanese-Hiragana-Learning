@@ -7,7 +7,9 @@
 - Zhibo Dai zd2263@columbia.edu	
 - Dengpan Yuan dy2436@columbia.edu 
 
-## Todo List
+## Todo List 
+
+### 04/18
 - [X] Data: currently we only have 1 for each quiz type, expect 5 for each one and select 10 randomly for quizzes.
 - [X] q_type 1&2 functionality: drag and validate
 - [X] q_type 3&4 functionality: check and validate
