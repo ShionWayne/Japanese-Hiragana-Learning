@@ -422,28 +422,17 @@ def quiz_valid(id):
 
 @app.route('/quiz/<int:id>')
 def quiz(id):
-    # if id == 1:
-    #     init_data()
-    #     # init c_num, w_num, user_result
-    #     global c_num, w_num, user_result
-    #     c_num = w_num = 0
-    #     user_result = list()
     # global w_num
+    global correct_dict, c_num, q_num, w_num
     if id > q_num:
         return "error: no id found"
     cur_q = q_selected_data[id]
-    # wrong3 = 0
-    # if w_num == 3:
-    #     wrong3 = 1
-    #     w_num = 0
-    return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
 
-# @app.route('/quiz_start')
-# def quiz_start():
-#     # init dictionary
-#     init_data()
-#     
-#     return render_template("quiz_start.html")
+    if id == 0:
+        c_num = 0
+        w_num = 0
+        init_correct_dict(q_num)
+    return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
 
 @app.route('/quiz_end')
 def quiz_end():
@@ -452,12 +441,8 @@ def quiz_end():
     init_correct_dict(q_num)
     return render_template('end.html', q_num=q_num, c_num=c_num)
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/')
 def hello():
-    global c_num
-    if request.method == 'POST':
-        c_num = 0
-    
     homeimg = os.path.join(app.config['image_folder'], 'homeimg.png')
     return render_template('home.html', homeimg=homeimg)
 
