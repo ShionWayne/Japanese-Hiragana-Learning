@@ -247,7 +247,7 @@ def init_data():
     init_correct_dict(q_num)
     
 
-init_data()
+# init_data()
 
 
 @app.route('/startlearning')
@@ -431,6 +431,16 @@ def quiz(id):
     #     wrong3 = 1
     #     w_num = 0
     return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
+
+@app.route('/quiz_start')
+def quiz_start():
+    # init dictionary
+    init_data()
+    # init c_num, w_num, user_result
+    global c_num, w_num, user_result
+    c_num = w_num = 0
+    user_result =list()
+    return render_template("quiz_start.html")
 
 @app.route('/quiz_end')
 def quiz_end():

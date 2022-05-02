@@ -1,5 +1,8 @@
 $(function() {
     $("#submit").click(function(){
-        window.location.href = '/'
+        window.location.href = '/';
+    })
+    $("#retry").click(function(){
+        window.location.href = "/quiz_start";
     })
 })
