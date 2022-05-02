@@ -42,3 +42,9 @@ body{
 .cont:active {
     color: grey;
 }
+
+.count_text{
+    margin-top: 40px;
+    font-weight: bold;
+    text-align: center;
+}
