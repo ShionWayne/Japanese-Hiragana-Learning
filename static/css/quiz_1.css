@@ -86,8 +86,11 @@
     margin-left: 61%;
     padding: 5px 0px;
 }
+
 .english{
     display: inline-block;
     color: green;
-    font-size: 30px;
+    font-size: 40px;
+    margin-left: 15%;
+    z-index: 15;
 }
