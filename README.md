@@ -22,17 +22,17 @@
 - [X] Add stroke data 
 - [X] Add stroke quiz
 - [X] Add stroke quiz function (q_type 5)
-- [ ] Quiz Graphic Design
-  - [ ] quiz 1&2 drag box same color, size, position, spacing
-  - [ ] quiz 2 destination dragbox need to be renamed
-  - [ ] quiz 3&4 box color consistent with previous
-  - [ ] quiz 1,2,3,4 submit button consistent
-  - [ ] alert background red/green consistent with key tone
-  - [ ] alert button next/try again consistent
-  - [ ] suggestion: all boxes with round border are better
-- [ ] Quiz Template Graphic Design
-  - [ ] Prev/Next button consistent with key tone
-  - [ ] delete the Next button
-  - [ ] change size of position of current idx&correct counter
-  - [ ] adjust next/prev button, counter layout & design
+- [X] Quiz Graphic Design
+  - [X] quiz 1&2 drag box same color, size, position, spacing
+  - [X] quiz 2 destination dragbox need to be renamed
+  - [X] quiz 3&4 box color consistent with previous
+  - [X] quiz 1,2,3,4 submit button consistent
+  - [X] alert background red/green consistent with key tone
+  - [X] alert button next/try again consistent
+  - [X] suggestion: all boxes with round border are better
+- [X] Quiz Template Graphic Design
+  - [X] Prev/Next button consistent with key tone
+  - [X] delete the Next button
+  - [X] change size of position of current idx&correct counter
+  - [X] adjust next/prev button, counter layout & design
 
