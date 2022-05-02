@@ -60,10 +60,11 @@
   </div>
 </nav>
 
-<button type="submit" class="btn btn-primary mb-2" id="prev-btn">Prev</button>
-<button type="submit" class="btn btn-primary mb-2" id="next-btn">Next</button>
-<span>Correct: {{c_num}}/{{q_num}};</span>
-<span>Current Quiz Number: {{ p_id+1 }}</span>
+<!-- <button type="submit" class="btn btn-primary mb-2" id="prev-btn">Prev</button>
+<button type="submit" class="btn btn-primary mb-2" id="next-btn">Next</button> -->
+<div class="count_text">
+  Correct: {{c_num}}/{{q_num}}; Current Quiz Number: {{ p_id+1 }}
+</div>
 
 <div class="container" id="content">
   {% block content %}
