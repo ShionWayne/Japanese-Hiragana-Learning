@@ -60,6 +60,8 @@
     font-size: xx-large;
     font-weight: bold;
     padding: 20px 4%;
+    height: 140px;
+    line-height: 140px;
 }
 #next_button_correct{
     border-radius: 10px;

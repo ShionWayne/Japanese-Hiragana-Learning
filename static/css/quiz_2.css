@@ -38,7 +38,10 @@
     font-weight: bold;
     margin-right: 300px;
 } */
-
+#eng0{
+    height: 80px;
+    line-height: 80px;
+}
 .quiz2_submit{
     border-radius: 10px;
     background-color: cornflowerblue;
