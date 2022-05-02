@@ -449,8 +449,12 @@ def quiz_end():
     init_correct_dict(q_num)
     return render_template('end.html', q_num=q_num, c_num=c_num)
 
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 def hello():
+    global c_num
+    if request.method == 'POST':
+        c_num = 0
+    
     homeimg = os.path.join(app.config['image_folder'], 'homeimg.png')
     return render_template('home.html', homeimg=homeimg)
 
