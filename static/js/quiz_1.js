@@ -78,7 +78,7 @@ function generate_green_zone(){
     $("#quiz1_result_zone").append(right)
     let next_button = $("<button>")
     next_button.attr("id", "next_button_correct")
-    next_button.addClass("btn btn-primary mb-2")
+    // next_button.addClass("btn btn-primary mb-2")
     next_button.text("Next")
     $("#quiz1_result_zone").append(next_button)
     $(".quiz1_submit").attr('disabled',"true")
