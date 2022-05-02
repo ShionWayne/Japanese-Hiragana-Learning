@@ -1,8 +1,8 @@
 function generate_green_zone(){
     $("#quiz_4_result_zone").empty()
     $("#quiz_4_result_zone").addClass("green_zone")
-    let right = $("<span>").text("Great! This word means " + data.eng)
-    right.addClass("result_word")
+    let right = $("<span>").text("Great! This word means '" + data.eng + "'.")
+    // right.addClass("result_word")
 
     $("#quiz_4_result_zone").append(right)
     let next_button = $("<button>")
