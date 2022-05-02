@@ -423,17 +423,11 @@ def quiz_valid(id):
 @app.route('/quiz/<int:id>')
 def quiz(id):
     # global w_num
+    global correct_dict, c_num, q_num, w_num
     if id > q_num:
         return "error: no id found"
     cur_q = q_selected_data[id]
-    # wrong3 = 0
-    # if w_num == 3:
-    #     wrong3 = 1
-    #     w_num = 0
-    global correct_dict
-    global c_num
-    global q_num
-    global w_num
+
     if id == 0:
         c_num = 0
         w_num = 0
