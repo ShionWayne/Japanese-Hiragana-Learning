@@ -1,7 +1,3 @@
-#content{
-    padding-left: 13%;
-}
-
 .drag_grid{
     height: 90px;
     display: grid;
@@ -53,7 +49,7 @@
     font-size: x-large;
     width: 100px;
     cursor: pointer;
-    margin-left: 35%;
+    margin-left: 40%;
     margin-bottom: 20px;
 }
 .green_zone{

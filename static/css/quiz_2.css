@@ -1,7 +1,3 @@
-#content{
-    padding-left: 13%;
-}
-
 #quiz_2_content {
     margin-top: 50px;
 }
@@ -50,7 +46,7 @@
     font-size: x-large;
     width: 100px;
     cursor: pointer;
-    margin-left: 30%;
+    margin-left: 40%;
     margin-bottom: 20px;
 }
 .green_zone{
