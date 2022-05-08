@@ -432,6 +432,7 @@ def quiz(id):
         c_num = 0
         w_num = 0
         init_correct_dict(q_num)
+        init_data()
     return render_template("quiz_arch.html", data=cur_q, p_id=id, q_num=q_num, c_num=c_num)
 
 @app.route('/quiz_end')
